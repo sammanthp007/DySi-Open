@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00FDEAF65AC4420B2A39AF12 /* Pods_DySi_Open.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB22981C0682E7E39DD89A58 /* Pods_DySi_Open.framework */; };
 		BB467D85209D039D008E2331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB467D84209D039D008E2331 /* AppDelegate.swift */; };
 		BB467D87209D039D008E2331 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB467D86209D039D008E2331 /* ViewController.swift */; };
 		BB467D8A209D039D008E2331 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB467D88209D039D008E2331 /* Main.storyboard */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		709A63699546813020582F76 /* Pods-DySi Open.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DySi Open.release.xcconfig"; path = "Pods/Target Support Files/Pods-DySi Open/Pods-DySi Open.release.xcconfig"; sourceTree = "<group>"; };
+		AB22981C0682E7E39DD89A58 /* Pods_DySi_Open.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DySi_Open.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB467D81209D039D008E2331 /* DySi Open.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DySi Open.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB467D84209D039D008E2331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB467D86209D039D008E2331 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,7 @@
 		BB467D8B209D039E008E2331 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB467D8E209D039E008E2331 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB467D90209D039E008E2331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECB8EC86F433885CE1F38424 /* Pods-DySi Open.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DySi Open.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DySi Open/Pods-DySi Open.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00FDEAF65AC4420B2A39AF12 /* Pods_DySi_Open.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2438FEC6B770AC0125517710 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB22981C0682E7E39DD89A58 /* Pods_DySi_Open.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6255412342D32B5091B001D1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ECB8EC86F433885CE1F38424 /* Pods-DySi Open.debug.xcconfig */,
+				709A63699546813020582F76 /* Pods-DySi Open.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BB467D78209D039D008E2331 = {
 			isa = PBXGroup;
 			children = (
 				BB467D83209D039D008E2331 /* DySi Open */,
 				BB467D82209D039D008E2331 /* Products */,
+				6255412342D32B5091B001D1 /* Pods */,
+				2438FEC6B770AC0125517710 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BB467D93209D039E008E2331 /* Build configuration list for PBXNativeTarget "DySi Open" */;
 			buildPhases = (
+				DE4660C3670ADCD96E85BEBE /* [CP] Check Pods Manifest.lock */,
 				BB467D7D209D039D008E2331 /* Sources */,
 				BB467D7E209D039D008E2331 /* Frameworks */,
 				BB467D7F209D039D008E2331 /* Resources */,
+				632C39F6B21417313336E660 /* [CP] Embed Pods Frameworks */,
+				2F1DCAAD98EDB7D2C2D905C7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -129,6 +156,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2F1DCAAD98EDB7D2C2D905C7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DySi Open/Pods-DySi Open-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		632C39F6B21417313336E660 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DySi Open/Pods-DySi Open-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE4660C3670ADCD96E85BEBE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DySi Open-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BB467D7D209D039D008E2331 /* Sources */ = {
@@ -278,15 +356,13 @@
 		};
 		BB467D94209D039E008E2331 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECB8EC86F433885CE1F38424 /* Pods-DySi Open.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K86KHC28SR;
 				INFOPLIST_FILE = "DySi Open/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sammanapps.DySi-Open";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -296,15 +372,13 @@
 		};
 		BB467D95209D039E008E2331 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 709A63699546813020582F76 /* Pods-DySi Open.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K86KHC28SR;
 				INFOPLIST_FILE = "DySi Open/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sammanapps.DySi-Open";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
