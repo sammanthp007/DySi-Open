@@ -2,8 +2,8 @@
 DySi Open uses Dynamic Signals open apis.
 
 ## Tasks
-- [ ] Create a new empty project in Xcode.
-- [ ] Setup Git for this project and link it to your personal account, make a
+- [x] Create a new empty project in Xcode.
+- [x] Setup Git for this project and link it to your personal account, make a
   first commit.
 - [ ] Using a framework of your choosing (native or 3rd party), make a call to
   [Dynamic Signals public api](https://www.dysiopen.com/v1/posts/public). The
