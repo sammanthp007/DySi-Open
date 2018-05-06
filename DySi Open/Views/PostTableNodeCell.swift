@@ -40,8 +40,14 @@ class PostTableNodeCell: ASCellNode {
         topSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 1.0, cornerColor: .black, fill: .black)
         bottomSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 1.0, cornerColor: .black, fill: .black)
         
-        if let authorDisplayName = postModel.getDisplayableAuthorName() {
+        // get authors displayName if exists
+        if let author = postModel.author, author.hasAuthor(), let authorDisplayName = postModel.getDisplayableAuthorName() {
             self.authorDisplayNameLabel.attributedText = self.getAttributedStringForAuthorName(withSize: Constants.CellLayout.FontSize, authorName: authorDisplayName)
+            
+            // get author profile image if exists
+            if let authorProfileImageURLString = postModel.getProfileImageUrlStringOfAuthor() {
+                self.authorImageNode.url = URL(string: authorProfileImageURLString)
+            }
         }
         
         self.postTitleLabel.attributedText = self.getAttributedStringForPostTitle(withSize: Constants.CellLayout.FontSize, postTitleString: postModel.getDisplayableTitle())
@@ -66,10 +72,17 @@ class PostTableNodeCell: ASCellNode {
         var headerChildren: [ASLayoutElement] = []
         let headerStack = ASStackLayoutSpec.horizontal()
         
+        // add author information to header stack if exists
         if self.authorDisplayNameLabel.attributedText != nil {
             headerStack.alignItems = .center
-            authorImageNode.style.preferredSize = CGSize(width: Constants.CellLayout.UserImageHeight, height: Constants.CellLayout.UserImageHeight)
-            headerChildren.append(ASInsetLayoutSpec(insets: Constants.CellLayout.InsetForAvatar, child: authorImageNode))
+            
+            // add author profile image to header stack if exists
+            if authorImageNode.url != nil {
+                authorImageNode.style.preferredSize = CGSize(width: Constants.CellLayout.UserImageHeight, height: Constants.CellLayout.UserImageHeight)
+                headerChildren.append(ASInsetLayoutSpec(insets: Constants.CellLayout.InsetForAvatar, child: authorImageNode))
+            }
+            
+            // add author name to header stack
             authorDisplayNameLabel.style.flexShrink = 1.0
             headerChildren.append(authorDisplayNameLabel)
             
