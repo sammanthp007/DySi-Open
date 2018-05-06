@@ -35,20 +35,25 @@ class DySiPostAuthor {
     }
     
     func getAuthorDisplayName() -> String? {
-        // TODO: The authors information will have to be changed according to postByLineType of post
-        return self.author ?? self.providerUserName ?? nil
+        return self.author
+    }
+    
+    func getSourceName() -> String? {
+        return self.postSourceName
+    }
+    
+    func getProfileImageUrlString() -> String? {
+        return self.profileImageUrlString
     }
     
     func getPostSourceSiteString() -> String? {
         return self.postSourceSiteString ?? nil
     }
     
-    func shouldAuthorAppearInByline() -> Bool {
-        switch postBylineType {
-        case .author:
+    func hasAuthor() -> Bool {
+        if self.getAuthorDisplayName() != nil && self.postBylineType == .author {
             return true
-        default:
-            return false
         }
+        return false
     }
 }

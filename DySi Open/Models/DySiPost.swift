@@ -56,6 +56,10 @@ class DySiPost {
         return self.author?.getAuthorDisplayName()
     }
     
+    func getProfileImageUrlStringOfAuthor() -> String? {
+        return self.author?.getProfileImageUrlString()
+    }
+    
     func getDescriptionText() -> String? {
         return self.descriptionText
     }
