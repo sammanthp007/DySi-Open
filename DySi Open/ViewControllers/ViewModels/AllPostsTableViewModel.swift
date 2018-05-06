@@ -11,6 +11,7 @@ import Foundation
 protocol AllPostTableViewModelProtocol {
     func fetchAllPosts (completion: @escaping (_ error: Error?) -> Void) -> Void
     func getNumberOfRowsInSection (in section: Int) -> Int
+    func getOnePost(for indexPath: IndexPath) -> DySiPost?
     func getPostTitleToDisplay (for indexPath: IndexPath) -> String
     func getPostAuthorDisplayName (for indexPath: IndexPath) -> String
     func getPostDescription (for indexPath: IndexPath) -> String
@@ -33,6 +34,11 @@ class AllPostsTableViewModel {
 }
 
 extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
+    func getOnePost(for indexPath: IndexPath) -> DySiPost? {
+        return self.allPosts?[indexPath.row]
+    }
+    
+    
     func fetchAllPosts(completion: @escaping (Error?) -> Void) {
         self.dysiDataManager.fetchAllPublicPosts { (error, rawPostsDict) in
             if let error = error {

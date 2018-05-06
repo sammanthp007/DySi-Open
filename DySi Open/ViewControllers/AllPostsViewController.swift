@@ -14,6 +14,12 @@ class AllPostsViewController: ASViewController<ASTableNode> {
     var viewModel: AllPostTableViewModelProtocol!
     var tableNode: ASTableNode!
     
+    var screenSizeForWidth: CGSize = {
+        let screenRect = UIScreen.main.bounds
+        let screenScale = UIScreen.main.scale
+        return CGSize(width: screenRect.size.width * screenScale, height: screenRect.size.width * screenScale)
+    }()
+    
     init() {
         self.viewModel = AllPostsTableViewModel()
         let tableNode = ASTableNode(style: .plain)
@@ -71,10 +77,13 @@ extension AllPostsViewController: ASTableDataSource {
         return self.viewModel.getNumberOfRowsInSection(in: section)
     }
     
-    func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
+    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let rowCount = self.tableNode(tableNode, numberOfRowsInSection: 0)
-        let node = ASTextCellNode()
-        node.text = self.viewModel.getPostTitleToDisplay(for: indexPath)
-        return node
+        
+        let nodeBlock: ASCellNodeBlock = {
+            // TODO: forced unwrapping here
+            return PostTableNodeCell(postModel: self.viewModel.getOnePost(for: indexPath)!)
+        }
+        return nodeBlock
     }
 }

@@ -39,12 +39,16 @@ class DySiPost {
         self.cleanPermaLinkString = cleanPermaLinkString
     }
     
+    func getDisplayableAuthorName() -> String {
+        return self.author?.getAuthorDisplayName() ?? Constants.UserFacingErrors.ForPostModel.AuthorNotAvailable
+    }
+    
     func getDescriptionText() -> String {
-        return self.descriptionText ?? "No description available"
+        return self.descriptionText ?? Constants.UserFacingErrors.ForPostModel.DescriptionNotAvailable
     }
     
     func getDisplayableTitle() -> String {
-        return self.title ?? "No title available"
+        return self.title ?? Constants.UserFacingErrors.ForPostModel.TitleNotAvailable
     }
     
     func getCreatedDateAsDate() -> Date {
@@ -54,16 +58,16 @@ class DySiPost {
     
     func getDisplayableDateString() -> String {
         // TODO:
-        return self.createdDateString ?? "18 May 2018"
+        return self.createdDateString ?? Constants.UserFacingErrors.ForPostModel.CreatedDateNotAvailable
     }
     
     func getCoverImageURLString() -> String {
         // TODO
-        return self.imageUrlString ?? "No image available"
+        return self.imageUrlString ?? Constants.UserFacingErrors.ForPostModel.ImageLinkNotAvailable
     }
     
     func getPermaLinkUrlString() -> String {
         // TODO
-        return self.cleanPermaLinkString ?? "No link available"
+        return self.cleanPermaLinkString ?? Constants.UserFacingErrors.ForPostModel.PermaLinkNotAvailable
     }
 }

@@ -19,7 +19,7 @@ class DySiDataManager: DySiDataManagerProtocol {
         print ("Make network call here")
         
         /* TODO: get the url from a different location, where all hardcoded urls are stored */
-        guard let url = URL(string: "https://www.dysiopen.com/v1/posts/public") else {
+        guard let url = URL(string: Constants.ForDySiAPI.URLS.GetAllPosts) else {
             let newError = NSError(domain: "DySiDataManagerError", code: 100, userInfo: ["message": " Could not unwrap the url for getting all public posts"])
             completion(newError, nil)
             return

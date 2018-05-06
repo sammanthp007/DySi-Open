@@ -29,6 +29,6 @@ class DySiPostAuthor {
     
     func getAuthorDisplayName() -> String {
         // TODO: The authors information will have to be changed according to postByLineType of post
-        return self.author ?? "No name"
+        return self.author ?? Constants.UserFacingErrors.ForPostAuthorModel.NameNotAvailable
     }
 }
