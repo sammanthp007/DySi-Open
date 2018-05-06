@@ -11,13 +11,7 @@ import Foundation
 protocol AllPostTableViewModelProtocol {
     func fetchAllPosts (completion: @escaping (_ error: Error?) -> Void) -> Void
     func getNumberOfRowsInSection (in section: Int) -> Int
-    func getPostTitleToDisplay (for indexPath: IndexPath) -> String
-    func getPostAuthorDisplayName (for indexPath: IndexPath) -> String
-    func getPostDescription (for indexPath: IndexPath) -> String
-    func getPostCreationDate (for indexPath: IndexPath) -> Date
-    func getDisplayableCreatedDate (for indexPath: IndexPath) -> String
-    func getPostImageLinkString (for indexPath: IndexPath) -> String
-    func getPostPermaLinkString (for indexPath: IndexPath) -> String
+    func getOnePost(for indexPath: IndexPath) -> DySiPost?
 }
 
 class AllPostsTableViewModel {
@@ -60,39 +54,7 @@ extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
         return self.allPosts?.count ?? 0
     }
     
-    func getPostTitleToDisplay(for indexPath: IndexPath) -> String {
-        // TODO: remove the string from here. Pull such text from a different storage of strings
-        return self.allPosts?[indexPath.row].title ?? "Not Available"
+    func getOnePost(for indexPath: IndexPath) -> DySiPost? {
+        return self.allPosts?[indexPath.row]
     }
-    
-    func getPostAuthorDisplayName(for indexPath: IndexPath) -> String {
-        // TODO:
-        return self.allPosts?[indexPath.row].author?.getAuthorDisplayName() ?? "Not Available"
-    }
-    
-    func getPostDescription(for indexPath: IndexPath) -> String {
-        // TODO:
-        return self.allPosts?[indexPath.row].descriptionText ?? "Not Available"
-    }
-    
-    func getPostCreationDate(for indexPath: IndexPath) -> Date {
-        // TODO:
-        return Date()
-    }
-    
-    func getDisplayableCreatedDate(for indexPath: IndexPath) -> String {
-        // TODO:
-        return self.allPosts?[indexPath.row].getDisplayableDateString() ?? "Not Available"
-    }
-    
-    func getPostImageLinkString(for indexPath: IndexPath) -> String {
-        // TODO: replace this with a default image
-        return self.allPosts?[indexPath.row].getCoverImageURLString() ?? "Not Available"
-    }
-    
-    func getPostPermaLinkString(for indexPath: IndexPath) -> String {
-        // TODO:
-        return self.allPosts?[indexPath.row].getPermaLinkUrlString() ?? "Not Available"
-    }
-    
 }

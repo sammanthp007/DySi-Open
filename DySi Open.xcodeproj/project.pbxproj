@@ -16,6 +16,9 @@
 		BB467D85209D039D008E2331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB467D84209D039D008E2331 /* AppDelegate.swift */; };
 		BB467D8C209D039E008E2331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB467D8B209D039E008E2331 /* Assets.xcassets */; };
 		BB467D8F209D039E008E2331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB467D8D209D039E008E2331 /* LaunchScreen.storyboard */; };
+		BBAC8FAC209F770300657561 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FAB209F770300657561 /* Constants.swift */; };
+		BBAC8FAF209F841400657561 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FAE209F841400657561 /* UIImage.swift */; };
+		BBAC8FB1209F86D900657561 /* PostTableNodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FB0209F86D900657561 /* PostTableNodeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		BB467D8B209D039E008E2331 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB467D8E209D039E008E2331 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB467D90209D039E008E2331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBAC8FAB209F770300657561 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BBAC8FAE209F841400657561 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		BBAC8FB0209F86D900657561 /* PostTableNodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableNodeCell.swift; sourceTree = "<group>"; };
 		ECB8EC86F433885CE1F38424 /* Pods-DySi Open.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DySi Open.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DySi Open/Pods-DySi Open.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +106,7 @@
 		BB09C976209E806C00735F83 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BBAC8FB0209F86D900657561 /* PostTableNodeCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -125,6 +132,7 @@
 		BB467D83209D039D008E2331 /* DySi Open */ = {
 			isa = PBXGroup;
 			children = (
+				BBAC8FAD209F83C000657561 /* Extensions */,
 				BB09C976209E806C00735F83 /* Views */,
 				BB09C96D209E7C4900735F83 /* Managers */,
 				BB09C96B209E7B7D00735F83 /* Models */,
@@ -133,8 +141,17 @@
 				BB467D8B209D039E008E2331 /* Assets.xcassets */,
 				BB467D8D209D039E008E2331 /* LaunchScreen.storyboard */,
 				BB467D90209D039E008E2331 /* Info.plist */,
+				BBAC8FAB209F770300657561 /* Constants.swift */,
 			);
 			path = "DySi Open";
+			sourceTree = "<group>";
+		};
+		BBAC8FAD209F83C000657561 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BBAC8FAE209F841400657561 /* UIImage.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,9 +290,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB09C973209E7EB200735F83 /* AllPostsViewController.swift in Sources */,
+				BBAC8FAF209F841400657561 /* UIImage.swift in Sources */,
+				BBAC8FB1209F86D900657561 /* PostTableNodeCell.swift in Sources */,
 				BB09C975209E7F1A00735F83 /* AllPostsTableViewModel.swift in Sources */,
 				BB09C971209E7D4300735F83 /* DySiPost.swift in Sources */,
 				BB09C96F209E7C6100735F83 /* DySiDataManager.swift in Sources */,
+				BBAC8FAC209F770300657561 /* Constants.swift in Sources */,
 				BB467D85209D039D008E2331 /* AppDelegate.swift in Sources */,
 				BB09C978209E85FF00735F83 /* DySiPostAuthor.swift in Sources */,
 			);

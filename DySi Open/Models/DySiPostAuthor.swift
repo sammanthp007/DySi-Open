@@ -16,6 +16,7 @@ class DySiPostAuthor {
     var profileUrlString: String? // The author's profile URL on the social network
     var postSourceName: String? // The name of the source of the post.
     var postSourceSiteString: String? // The website in which the post originated
+    var postBylineType: PostBylineType
     
     init?(authorDict: [String: Any]) {
         self.author = authorDict["author"] as? String
@@ -25,10 +26,29 @@ class DySiPostAuthor {
         self.profileUrlString = authorDict["profileUrl"] as? String
         self.postSourceName = authorDict["postSourceName"] as? String
         self.postSourceSiteString = authorDict["postSourceSite"] as? String
+        
+        if let postBylineTypeString = authorDict["postBylineType"] as? String {
+            self.postBylineType = PostBylineType(rawValue: postBylineTypeString)!
+        } else {
+            self.postBylineType = .source
+        }
     }
     
-    func getAuthorDisplayName() -> String {
+    func getAuthorDisplayName() -> String? {
         // TODO: The authors information will have to be changed according to postByLineType of post
-        return self.author ?? "No name"
+        return self.author ?? self.providerUserName ?? nil
+    }
+    
+    func getPostSourceSiteString() -> String? {
+        return self.postSourceSiteString ?? nil
+    }
+    
+    func shouldAuthorAppearInByline() -> Bool {
+        switch postBylineType {
+        case .author:
+            return true
+        default:
+            return false
+        }
     }
 }

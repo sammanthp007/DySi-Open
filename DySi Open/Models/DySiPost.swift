@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum PostBylineType: String {
+    case hidden = "Hidden"
+    case author = "Author"
+    case source = "Source"
+}
+
 class DySiPost {
     var author: DySiPostAuthor?
     var title: String?
@@ -19,17 +25,22 @@ class DySiPost {
     
     init?(postDict: [String: Any]) {
         // get all required properties
-        guard let title = postDict["title"] as? String, let descriptionText = postDict["description"] as? String, let createdDateString = postDict["createdDate"] as? String, let cleanPermaLinkString = postDict["cleanPermaLink"] as? String, let authorDict = postDict["author"] as? [String: Any] else {
+        guard let title = postDict["title"] as? String, let descriptionText = postDict["description"] as? String, let createdDateString = postDict["createdDate"] as? String, let cleanPermaLinkString = postDict["cleanPermaLink"] as? String, let postBylineTypeString = postDict["postBylineType"] as? String, var authorDict = postDict["author"] as? [String: Any] else {
             // TODO: Handle this error in a safer way
             print ("error parsing api data")
             return
         }
+        
+        // TODO: handle for external displayMode (check api documentation)
         
         guard let images = postDict["images"] as? [String: Any], let originalImage = images["Original"] as? [String: Any], let imageUrl = originalImage["url"] as? String else {
             // TODO: Handle this error in a safer way
             print ("error parsing images")
             return
         }
+        
+        // get info if author information should be shown in byline
+        authorDict["postBylineType"] = postBylineTypeString
         
         self.author = DySiPostAuthor(authorDict: authorDict)
         self.title = title
@@ -39,12 +50,16 @@ class DySiPost {
         self.cleanPermaLinkString = cleanPermaLinkString
     }
     
-    func getDescriptionText() -> String {
-        return self.descriptionText ?? "No description available"
+    func getDisplayableAuthorName() -> String? {
+        return self.author?.getAuthorDisplayName()
+    }
+    
+    func getDescriptionText() -> String? {
+        return self.descriptionText
     }
     
     func getDisplayableTitle() -> String {
-        return self.title ?? "No title available"
+        return self.title ?? Constants.UserFacingErrors.ForPostModel.TitleNotAvailable
     }
     
     func getCreatedDateAsDate() -> Date {
@@ -54,16 +69,20 @@ class DySiPost {
     
     func getDisplayableDateString() -> String {
         // TODO:
-        return self.createdDateString ?? "18 May 2018"
+        return self.createdDateString ?? Constants.UserFacingErrors.ForPostModel.CreatedDateNotAvailable
     }
     
     func getCoverImageURLString() -> String {
         // TODO
-        return self.imageUrlString ?? "No image available"
+        return self.imageUrlString ?? Constants.UserFacingErrors.ForPostModel.ImageLinkNotAvailable
     }
     
     func getPermaLinkUrlString() -> String {
         // TODO
-        return self.cleanPermaLinkString ?? "No link available"
+        return self.cleanPermaLinkString ?? Constants.UserFacingErrors.ForPostModel.PermaLinkNotAvailable
+    }
+    
+    func getSourceSiteString() -> String? {
+        return self.author?.getPostSourceSiteString()
     }
 }
