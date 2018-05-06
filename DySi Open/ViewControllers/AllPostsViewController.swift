@@ -77,9 +77,7 @@ extension AllPostsViewController: ASTableDataSource {
         return self.viewModel.getNumberOfRowsInSection(in: section)
     }
     
-    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let rowCount = self.tableNode(tableNode, numberOfRowsInSection: 0)
-        
+    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {        
         let nodeBlock: ASCellNodeBlock = {
             // TODO: forced unwrapping here
             return PostTableNodeCell(postModel: self.viewModel.getOnePost(for: indexPath)!)
