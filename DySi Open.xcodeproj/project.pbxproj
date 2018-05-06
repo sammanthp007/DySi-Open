@@ -12,6 +12,7 @@
 		BB09C971209E7D4300735F83 /* DySiPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB09C970209E7D4300735F83 /* DySiPost.swift */; };
 		BB09C973209E7EB200735F83 /* AllPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB09C972209E7EB200735F83 /* AllPostsViewController.swift */; };
 		BB09C975209E7F1A00735F83 /* AllPostsTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB09C974209E7F1A00735F83 /* AllPostsTableViewModel.swift */; };
+		BB09C978209E85FF00735F83 /* DySiPostAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB09C977209E85FF00735F83 /* DySiPostAuthor.swift */; };
 		BB467D85209D039D008E2331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB467D84209D039D008E2331 /* AppDelegate.swift */; };
 		BB467D8C209D039E008E2331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB467D8B209D039E008E2331 /* Assets.xcassets */; };
 		BB467D8F209D039E008E2331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB467D8D209D039E008E2331 /* LaunchScreen.storyboard */; };
@@ -24,6 +25,7 @@
 		BB09C970209E7D4300735F83 /* DySiPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DySiPost.swift; sourceTree = "<group>"; };
 		BB09C972209E7EB200735F83 /* AllPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPostsViewController.swift; sourceTree = "<group>"; };
 		BB09C974209E7F1A00735F83 /* AllPostsTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPostsTableViewModel.swift; sourceTree = "<group>"; };
+		BB09C977209E85FF00735F83 /* DySiPostAuthor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DySiPostAuthor.swift; sourceTree = "<group>"; };
 		BB467D81209D039D008E2331 /* DySi Open.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DySi Open.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB467D84209D039D008E2331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB467D8B209D039E008E2331 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				BB09C970209E7D4300735F83 /* DySiPost.swift */,
+				BB09C977209E85FF00735F83 /* DySiPostAuthor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				BB09C971209E7D4300735F83 /* DySiPost.swift in Sources */,
 				BB09C96F209E7C6100735F83 /* DySiDataManager.swift in Sources */,
 				BB467D85209D039D008E2331 /* AppDelegate.swift in Sources */,
+				BB09C978209E85FF00735F83 /* DySiPostAuthor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
