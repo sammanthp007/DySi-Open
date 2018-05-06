@@ -6,5 +6,7 @@ target 'DySi Open' do
   use_frameworks!
 
   # Pods for DySi Open
+  pod 'Alamofire', '~> 4.7'
+  pod 'Texture'
 
 end

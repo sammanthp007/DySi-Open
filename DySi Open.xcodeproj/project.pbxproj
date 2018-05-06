@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		00FDEAF65AC4420B2A39AF12 /* Pods_DySi_Open.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB22981C0682E7E39DD89A58 /* Pods_DySi_Open.framework */; };
+		BB09C96F209E7C6100735F83 /* DySiDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB09C96E209E7C6100735F83 /* DySiDataManager.swift */; };
+		BB09C971209E7D4300735F83 /* DySiPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB09C970209E7D4300735F83 /* DySiPost.swift */; };
+		BB09C973209E7EB200735F83 /* AllPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB09C972209E7EB200735F83 /* AllPostsViewController.swift */; };
+		BB09C975209E7F1A00735F83 /* AllPostsTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB09C974209E7F1A00735F83 /* AllPostsTableViewModel.swift */; };
 		BB467D85209D039D008E2331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB467D84209D039D008E2331 /* AppDelegate.swift */; };
-		BB467D87209D039D008E2331 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB467D86209D039D008E2331 /* ViewController.swift */; };
-		BB467D8A209D039D008E2331 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB467D88209D039D008E2331 /* Main.storyboard */; };
 		BB467D8C209D039E008E2331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB467D8B209D039E008E2331 /* Assets.xcassets */; };
 		BB467D8F209D039E008E2331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB467D8D209D039E008E2331 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -18,10 +20,12 @@
 /* Begin PBXFileReference section */
 		709A63699546813020582F76 /* Pods-DySi Open.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DySi Open.release.xcconfig"; path = "Pods/Target Support Files/Pods-DySi Open/Pods-DySi Open.release.xcconfig"; sourceTree = "<group>"; };
 		AB22981C0682E7E39DD89A58 /* Pods_DySi_Open.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DySi_Open.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB09C96E209E7C6100735F83 /* DySiDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DySiDataManager.swift; sourceTree = "<group>"; };
+		BB09C970209E7D4300735F83 /* DySiPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DySiPost.swift; sourceTree = "<group>"; };
+		BB09C972209E7EB200735F83 /* AllPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPostsViewController.swift; sourceTree = "<group>"; };
+		BB09C974209E7F1A00735F83 /* AllPostsTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPostsTableViewModel.swift; sourceTree = "<group>"; };
 		BB467D81209D039D008E2331 /* DySi Open.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DySi Open.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB467D84209D039D008E2331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BB467D86209D039D008E2331 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BB467D89209D039D008E2331 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BB467D8B209D039E008E2331 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB467D8E209D039E008E2331 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB467D90209D039E008E2331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,6 +61,46 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BB09C96A209E7B7500735F83 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				BB09C96C209E7B8400735F83 /* ViewModels */,
+				BB09C972209E7EB200735F83 /* AllPostsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		BB09C96B209E7B7D00735F83 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BB09C970209E7D4300735F83 /* DySiPost.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BB09C96C209E7B8400735F83 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BB09C974209E7F1A00735F83 /* AllPostsTableViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BB09C96D209E7C4900735F83 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				BB09C96E209E7C6100735F83 /* DySiDataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		BB09C976209E806C00735F83 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		BB467D78209D039D008E2331 = {
 			isa = PBXGroup;
 			children = (
@@ -78,9 +122,11 @@
 		BB467D83209D039D008E2331 /* DySi Open */ = {
 			isa = PBXGroup;
 			children = (
+				BB09C976209E806C00735F83 /* Views */,
+				BB09C96D209E7C4900735F83 /* Managers */,
+				BB09C96B209E7B7D00735F83 /* Models */,
+				BB09C96A209E7B7500735F83 /* ViewControllers */,
 				BB467D84209D039D008E2331 /* AppDelegate.swift */,
-				BB467D86209D039D008E2331 /* ViewController.swift */,
-				BB467D88209D039D008E2331 /* Main.storyboard */,
 				BB467D8B209D039E008E2331 /* Assets.xcassets */,
 				BB467D8D209D039E008E2331 /* LaunchScreen.storyboard */,
 				BB467D90209D039E008E2331 /* Info.plist */,
@@ -151,7 +197,6 @@
 			files = (
 				BB467D8F209D039E008E2331 /* LaunchScreen.storyboard in Resources */,
 				BB467D8C209D039E008E2331 /* Assets.xcassets in Resources */,
-				BB467D8A209D039D008E2331 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,9 +224,20 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DySi Open/Pods-DySi Open-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -213,7 +269,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB467D87209D039D008E2331 /* ViewController.swift in Sources */,
+				BB09C973209E7EB200735F83 /* AllPostsViewController.swift in Sources */,
+				BB09C975209E7F1A00735F83 /* AllPostsTableViewModel.swift in Sources */,
+				BB09C971209E7D4300735F83 /* DySiPost.swift in Sources */,
+				BB09C96F209E7C6100735F83 /* DySiDataManager.swift in Sources */,
 				BB467D85209D039D008E2331 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,14 +280,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BB467D88209D039D008E2331 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BB467D89209D039D008E2331 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BB467D8D209D039E008E2331 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -362,7 +413,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K86KHC28SR;
 				INFOPLIST_FILE = "DySi Open/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sammanapps.DySi-Open";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -378,7 +432,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K86KHC28SR;
 				INFOPLIST_FILE = "DySi Open/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sammanapps.DySi-Open";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
