@@ -12,11 +12,12 @@ protocol AllPostTableViewModelProtocol {
     func fetchAllPosts (completion: @escaping (_ error: Error?) -> Void) -> Void
     func getNumberOfRowsInSection (in section: Int) -> Int
     func getPostTitleToDisplay (for indexPath: IndexPath) -> String
-    func getPostAuthor (for indexPath: IndexPath) -> DySiPostAuthor
+    func getPostAuthorDisplayName (for indexPath: IndexPath) -> String
     func getPostDescription (for indexPath: IndexPath) -> String
     func getPostCreationDate (for indexPath: IndexPath) -> Date
-    func getPostImageLink (for indexPath: IndexPath) -> URL
-    func getPostPermaLink (for indexPath: IndexPath) -> URL
+    func getDisplayableCreatedDate (for indexPath: IndexPath) -> String
+    func getPostImageLinkString (for indexPath: IndexPath) -> String
+    func getPostPermaLinkString (for indexPath: IndexPath) -> String
 }
 
 class AllPostsTableViewModel {
@@ -35,13 +36,20 @@ extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
     func fetchAllPosts(completion: @escaping (Error?) -> Void) {
         self.dysiDataManager.fetchAllPublicPosts { (error, rawPostsDict) in
             if let error = error {
-                completion(error)
+                return completion(error)
             }
             /* since this will affect the UI */
             DispatchQueue.main.async {
                 /* probably this is where we convert the dictionary to model objects */
                 //                self.allCharacters = allCharacters
-                print (rawPostsDict)
+                var newPost: [DySiPost] = []
+                // TODO: do not force unwrap
+                for eachPostDict in rawPostsDict! {
+                    // TODO: do not force unwrap
+                    newPost.append(DySiPost(postDict: eachPostDict)!)
+                }
+                
+                self.allPosts = newPost
                 completion(nil)
             }
         }
@@ -53,18 +61,18 @@ extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
     }
     
     func getPostTitleToDisplay(for indexPath: IndexPath) -> String {
-        // TODO:
-        return "title"
+        // TODO: remove the string from here. Pull such text from a different storage of strings
+        return self.allPosts?[indexPath.row].title ?? "Not Available"
     }
     
-    func getPostAuthor(for indexPath: IndexPath) -> DySiPostAuthor {
+    func getPostAuthorDisplayName(for indexPath: IndexPath) -> String {
         // TODO:
-        return DySiPostAuthor()
+        return self.allPosts?[indexPath.row].author?.getAuthorDisplayName() ?? "Not Available"
     }
     
     func getPostDescription(for indexPath: IndexPath) -> String {
         // TODO:
-        return "description"
+        return self.allPosts?[indexPath.row].descriptionText ?? "Not Available"
     }
     
     func getPostCreationDate(for indexPath: IndexPath) -> Date {
@@ -72,14 +80,19 @@ extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
         return Date()
     }
     
-    func getPostImageLink(for indexPath: IndexPath) -> URL {
+    func getDisplayableCreatedDate(for indexPath: IndexPath) -> String {
         // TODO:
-        return URL(string: "www.google.com")!
+        return self.allPosts?[indexPath.row].getDisplayableDateString() ?? "Not Available"
     }
     
-    func getPostPermaLink(for indexPath: IndexPath) -> URL {
+    func getPostImageLinkString(for indexPath: IndexPath) -> String {
+        // TODO: replace this with a default image
+        return self.allPosts?[indexPath.row].getCoverImageURLString() ?? "Not Available"
+    }
+    
+    func getPostPermaLinkString(for indexPath: IndexPath) -> String {
         // TODO:
-        return URL(string: "www.google.com")!
+        return self.allPosts?[indexPath.row].getPermaLinkUrlString() ?? "Not Available"
     }
     
 }
