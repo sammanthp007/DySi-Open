@@ -23,6 +23,8 @@ class DySiPost {
     var imageUrlString: String?
     var cleanPermaLinkString: String?
     
+    private let dateFormatter = DateFormatter()
+    
     init?(postDict: [String: Any]) {
         // get all required properties
         guard let title = postDict["title"] as? String, let descriptionText = postDict["description"] as? String, let createdDateString = postDict["createdDate"] as? String, let cleanPermaLinkString = postDict["cleanPermaLink"] as? String, let postBylineTypeString = postDict["postBylineType"] as? String, var authorDict = postDict["author"] as? [String: Any] else {
@@ -67,9 +69,18 @@ class DySiPost {
         return Date()
     }
     
-    func getDisplayableDateString() -> String {
-        // TODO:
-        return self.createdDateString ?? Constants.UserFacingErrors.ForPostModel.CreatedDateNotAvailable
+    func getDisplayableDateString() -> String? {
+        if let dateString = self.createdDateString {
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSX"
+            let date = dateFormatter.date(from: dateString)
+            
+            guard let createdDate = date else {
+                return nil
+            }
+            dateFormatter.dateStyle = .long
+            return dateFormatter.string(from: createdDate)
+        }
+        return nil
     }
     
     func getCoverImageURLString() -> String {

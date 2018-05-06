@@ -46,13 +46,18 @@ class PostTableNodeCell: ASCellNode {
         
         self.postTitleLabel.attributedText = self.getAttributedStringForPostTitle(withSize: Constants.CellLayout.FontSize, postTitleString: postModel.getDisplayableTitle())
         
-        if let postDescriptionText = postModel.getDescriptionText() {
-            self.postDescriptionLabel.attributedText = self.getAttributedStringForDescription(withSize: Constants.CellLayout.FontSize, descriptionText: postDescriptionText)
-        }
-        
         if let sourceSiteString = postModel.getSourceSiteString() {
             self.postSourceSiteString.attributedText = self.getAttributedStringForSourceSite(withSize: Constants.CellLayout.FontSize, postSourceSiteString: sourceSiteString)
         }
+        
+        if let createdAtDateString = postModel.getDisplayableDateString() {
+            self.postCreatedAtDateLabel.attributedText = self.getAttributedStringForCreatedAtDateLabel(withSize: Constants.CellLayout.FontSize, createdAtDateText: createdAtDateString)
+        }
+
+        if let postDescriptionText = postModel.getDescriptionText() {
+            self.postDescriptionLabel.attributedText = self.getAttributedStringForDescription(withSize: Constants.CellLayout.FontSize, descriptionText: postDescriptionText)
+        }
+
         self.automaticallyManagesSubnodes = true
     }
     
@@ -77,7 +82,7 @@ class PostTableNodeCell: ASCellNode {
         
         let bodyStack = ASStackLayoutSpec.vertical()
         bodyStack.spacing = Constants.CellLayout.VerticalBuffer
-        bodyStack.children = [postTitleLabel, postSourceSiteString]
+        bodyStack.children = [postTitleLabel, postSourceSiteString, postCreatedAtDateLabel]
         
         //        timeIntervalLabel.style.spacingBefore = Constants.CellLayout.HorizontalBuffer
         //        headerChildren.append(timeIntervalLabel)
