@@ -5,7 +5,7 @@ DySi Open uses Dynamic Signals open apis.
 - [x] Create a new empty project in Xcode.
 - [x] Setup Git for this project and link it to your personal account, make a
   first commit.
-- [ ] Using a framework of your choosing (native or 3rd party), make a call to
+- [x] Using a framework of your choosing (native or 3rd party), make a call to
   [Dynamic Signals public api](https://www.dysiopen.com/v1/posts/public). The
   response will be a JSON array of post objects. You can see what these objects
   look like [here](https://dev.voicestorm.com/api/responses/postResponse).
