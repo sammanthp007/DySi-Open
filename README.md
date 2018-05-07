@@ -18,9 +18,14 @@ DySi Open uses Dynamic Signals open apis.
 - [x] Clicking on each post should open the post’s "permalink” in a webView.
  
 ## Bonus (Nice to have features):-
-- [ ] Implement pull-to-refresh.
-- [ ] Implement caching mechanism for the server response.
-- [ ] Implement caching mechanism for images.
+- [x] Implement pull-to-refresh.
+- [x] Implement caching mechanism for the server response: With `Alamofire`
+- [x] Implement caching mechanism for images: With `PINCache`
+
+## Extra features I've added
+- [x] User sees an alert when there's a networking error.
+- [x] User sees a loading state while waiting for posts to load.
+- [x] User sees images being rendered progressively as it gets downloaded.
 
 > Feel free to surprise us with anything cool you can do to this project.
 

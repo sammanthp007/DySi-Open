@@ -37,6 +37,10 @@ class PostTableNodeCell: ASCellNode {
     init(postModel: DySiPost) {
         super.init()
         self.selectionStyle = .none
+        self.photoImageNode.shouldRenderProgressImages = true
+        self.photoImageNode.shouldCacheImage = true
+        self.authorImageNode.shouldRenderProgressImages = true
+        self.authorImageNode.shouldCacheImage = true
         
         topSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 1.0, cornerColor: .black, fill: .black)
         bottomSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 1.0, cornerColor: .black, fill: .black)
@@ -50,18 +54,13 @@ class PostTableNodeCell: ASCellNode {
                 self.authorImageNode.url = URL(string: authorProfileImageURLString)
             }
         }
-        
-        if let arrayOfUrlString = postModel.listOfImageUrlStrings, arrayOfUrlString.count > 0 {
-            var arrayOfUrl: [URL] = []
-            for urlString in arrayOfUrlString {
-                if let url = URL(string: urlString) {
-                    arrayOfUrl.append(url)
-                }
-            }
 
-            self.photoImageNode.urls = arrayOfUrl
+        if let coverImageUrlString = postModel.getCoverImageURLString() {
+            if let url = URL(string: coverImageUrlString) {
+                self.photoImageNode.url = url
+            }
         }
-        
+
         self.postTitleLabel.attributedText = self.getAttributedStringForPostTitle(withSize: Constants.CellLayout.FontSize, postTitleString: postModel.getDisplayableTitle())
         
         if let sourceSiteString = postModel.getSourceSiteString() {
