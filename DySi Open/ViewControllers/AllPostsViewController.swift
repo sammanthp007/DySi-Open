@@ -26,6 +26,7 @@ class AllPostsViewController: ASViewController<ASTableNode> {
         super.init(node: tableNode)
         self.tableNode = tableNode
         self.tableNode.dataSource = self
+        self.tableNode.delegate = self
 
         self.navigationItem.title = Constants.UILabels.AllPostViewNavigationItemTitle
     }
@@ -84,5 +85,13 @@ extension AllPostsViewController: ASTableDataSource {
         }
 
         return nodeBlock
+    }
+}
+
+extension AllPostsViewController: ASTableDelegate {
+    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        print ("selected at: ", indexPath.row)
+        let viewController = PostInWebViewController(linkToOpen: self.viewModel.getPermalinkOfPost(for: indexPath))
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }

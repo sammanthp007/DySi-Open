@@ -19,6 +19,7 @@
 		BBAC8FAC209F770300657561 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FAB209F770300657561 /* Constants.swift */; };
 		BBAC8FAF209F841400657561 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FAE209F841400657561 /* UIImage.swift */; };
 		BBAC8FB1209F86D900657561 /* PostTableNodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FB0209F86D900657561 /* PostTableNodeCell.swift */; };
+		BBAC8FB3209FDEB500657561 /* PostInWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FB2209FDEB500657561 /* PostInWebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		BBAC8FAB209F770300657561 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BBAC8FAE209F841400657561 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		BBAC8FB0209F86D900657561 /* PostTableNodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableNodeCell.swift; sourceTree = "<group>"; };
+		BBAC8FB2209FDEB500657561 /* PostInWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInWebViewController.swift; sourceTree = "<group>"; };
 		ECB8EC86F433885CE1F38424 /* Pods-DySi Open.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DySi Open.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DySi Open/Pods-DySi Open.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +76,7 @@
 			children = (
 				BB09C96C209E7B8400735F83 /* ViewModels */,
 				BB09C972209E7EB200735F83 /* AllPostsViewController.swift */,
+				BBAC8FB2209FDEB500657561 /* PostInWebViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				BB09C96F209E7C6100735F83 /* DySiDataManager.swift in Sources */,
 				BBAC8FAC209F770300657561 /* Constants.swift in Sources */,
 				BB467D85209D039D008E2331 /* AppDelegate.swift in Sources */,
+				BBAC8FB3209FDEB500657561 /* PostInWebViewController.swift in Sources */,
 				BB09C978209E85FF00735F83 /* DySiPostAuthor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,6 +12,7 @@ protocol AllPostTableViewModelProtocol {
     func fetchAllPosts (completion: @escaping (_ error: Error?) -> Void) -> Void
     func getNumberOfRowsInSection (in section: Int) -> Int
     func getOnePost(for indexPath: IndexPath) -> DySiPost?
+    func getPermalinkOfPost(for indexPath: IndexPath) -> URL
 }
 
 class AllPostsTableViewModel {
@@ -56,5 +57,12 @@ extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
     
     func getOnePost(for indexPath: IndexPath) -> DySiPost? {
         return self.allPosts?[indexPath.row]
+    }
+    
+    func getPermalinkOfPost(for indexPath: IndexPath) -> URL {
+        if let urlString = self.allPosts?[indexPath.row].cleanPermaLinkString, let url = URL(string: urlString) {
+            return url
+        }
+        return  URL(string: Constants.ForDySiAPI.URLS.FallBackPermaLink)!
     }
 }
