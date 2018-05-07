@@ -49,6 +49,7 @@ class AllPostsViewController: ASViewController<ASTableNode> {
         // add refresh control to table view
         (tableNode.view as UITableView).insertSubview(refreshControl, at: 0)
         
+        Connectivity.showAlertIfNotConnectedToInternet(viewController: self, completion: nil)
         setupActivityIndicator()
     }
     
@@ -125,6 +126,11 @@ extension AllPostsViewController {
     }
     
     @objc func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        Connectivity.showAlertIfNotConnectedToInternet(viewController: self) { (action) in
+            refreshControl.endRefreshing()
+            return
+        }
+        
         self.fetchAllPosts { (error) in
             if let error = error {
                 // TODO: show alert to user with a friendly error message
