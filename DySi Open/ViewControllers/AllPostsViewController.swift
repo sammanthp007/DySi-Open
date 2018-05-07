@@ -41,6 +41,7 @@ class AllPostsViewController: ASViewController<ASTableNode> {
 
         // Do any additional setup after loading the view.
         initView()
+        initViewModel()
 
         DispatchQueue.main.async {
             self.activityIndicator.startAnimating()
@@ -51,10 +52,14 @@ class AllPostsViewController: ASViewController<ASTableNode> {
 
             if let error = error {
                 ErrorHandler.displayErrorOnDeviceScreen(viewController: self, error: error)
-            } else {
-                DispatchQueue.main.async {
-                    self.tableNode.reloadData()
-                }
+            }
+        }
+    }
+
+    func initViewModel() {
+        viewModel.reloadTableNodeClosure = { [weak self] () in
+            DispatchQueue.main.async {
+                self?.tableNode.reloadData()
             }
         }
     }
@@ -85,7 +90,6 @@ extension AllPostsViewController: ASTableDataSource {
 
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let nodeBlock: ASCellNodeBlock = {
-            // TODO: forced unwrapping here
             if let cellViewModel = self.viewModel.getCellViewModel(for: indexPath) {
                 return PostTableNodeCell(postCellViewModel: cellViewModel)
             }
@@ -132,7 +136,7 @@ extension AllPostsViewController {
         activityIndicator.frame = refreshRect
         self.node.view.addSubview(activityIndicator)
     }
-    
+
     @objc func refreshControlAction(_ refreshControl: UIRefreshControl) {
         self.fetchAllPosts { (error) in
             if let error = error {
@@ -142,9 +146,6 @@ extension AllPostsViewController {
                 }
             } else {
                 DispatchQueue.main.async {
-                    // update table
-                    self.tableNode.reloadData()
-
                     // Tell the refreshControl to stop spinning
                     refreshControl.endRefreshing()
                 }
