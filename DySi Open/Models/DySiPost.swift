@@ -19,7 +19,6 @@ class DySiPost {
     var title: String?
     var descriptionText: String?
     var createdDateString: String?
-    // TODO: change to list of images and choose the best one for the purpose accordingly, or store all links and provide accordingly
     var listOfImageUrlStrings: [String]?
     var cleanPermaLinkString: String?
     
@@ -93,6 +92,7 @@ class DySiPost {
     
     func getCoverImageURLString() -> String? {
         if let countOfUrlStrings = self.listOfImageUrlStrings?.count, countOfUrlStrings > 0 {
+            // TODO: Figure out which is the cover image. The data does not seem to be consitent though.
             return self.listOfImageUrlStrings?[0]
         }
         return nil
