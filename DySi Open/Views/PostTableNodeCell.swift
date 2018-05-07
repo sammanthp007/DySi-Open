@@ -125,7 +125,6 @@ class PostTableNodeCell: ASCellNode {
         
         let footerStack = ASStackLayoutSpec.vertical()
         if self.postDescriptionLabel.attributedText != nil {
-            footerStack.spacing = Constants.CellLayout.VerticalBuffer
             footerStack.children = [postDescriptionLabel]
         }
 
@@ -149,6 +148,7 @@ class PostTableNodeCell: ASCellNode {
 
         // display description, if exists
         if let footerStackContentCount = footerStack.children?.count, footerStackContentCount > 0 {
+            print (footerStack.children?.count)
             mainVerticalStack.children?.append(ASInsetLayoutSpec(insets: Constants.CellLayout.InsetForFooter, child: footerStack))
         }
         
@@ -169,15 +169,15 @@ extension PostTableNodeCell {
     
     func getAttributedStringForPostTitle(withSize size: CGFloat, postTitleString: String) -> NSAttributedString {
         let attr = [
-            NSAttributedStringKey.foregroundColor : UIColor.darkGray,
-            NSAttributedStringKey.font: UIFont.systemFont(ofSize: size)
+            NSAttributedStringKey.foregroundColor: UIColor.darkGray,
+            NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: size)
         ]
         return NSAttributedString(string: postTitleString, attributes: attr)
     }
     
     func getAttributedStringForCreatedAtDateLabel(withSize size: CGFloat, createdAtDateText: String) -> NSAttributedString {
         let attr = [
-            NSAttributedStringKey.foregroundColor : UIColor.darkGray,
+            NSAttributedStringKey.foregroundColor : UIColor.lightGray,
             NSAttributedStringKey.font: UIFont.systemFont(ofSize: size)
         ]
         return NSAttributedString(string: createdAtDateText, attributes: attr)
