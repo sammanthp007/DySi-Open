@@ -19,7 +19,7 @@ class DySiPost {
     var title: String?
     var descriptionText: String?
     var createdDateString: String?
-    var listOfImageUrlStrings: [String]?
+    var dictOfImageUrls: [String: Any]?
     var cleanPermaLinkString: String?
     
     private let dateFormatter = DateFormatter()
@@ -31,17 +31,23 @@ class DySiPost {
             print ("error parsing api data")
             return
         }
-        
+
         // TODO: handle for external displayMode (check api documentation)
 
         // get the first image
-        var listOfUrlStrings: [String]? = []
+        var imageUrlStringDict: [String: Any]? = [:]
+        var arrayOfImageStrings: [String] = []
         if let media = postDict["media"] as? [[String: Any]]  {
             for mediaContent in media {
                 if let urlString = mediaContent["url"] as? String, let role = mediaContent["role"] as? String, role.lowercased().contains("image") {
-                    listOfUrlStrings?.append(urlString)
+                    if role == Constants.ForDySiAPI.RoleOfCoverImage {
+                        imageUrlStringDict?["original"] = urlString
+                    } else {
+                        arrayOfImageStrings.append(urlString)
+                    }
                 }
             }
+            imageUrlStringDict?["nonoriginals"] = arrayOfImageStrings
         }
 
         // get info if author information should be shown in byline
@@ -53,7 +59,7 @@ class DySiPost {
             self.descriptionText = descriptionText
         }
         self.createdDateString = createdDateString
-        self.listOfImageUrlStrings = listOfUrlStrings
+        self.dictOfImageUrls = imageUrlStringDict
         self.cleanPermaLinkString = cleanPermaLinkString
     }
 
@@ -93,15 +99,16 @@ class DySiPost {
     }
     
     func getCoverImageURLString() -> String? {
-        if let countOfUrlStrings = self.listOfImageUrlStrings?.count, countOfUrlStrings > 0 {
-            // TODO: Figure out which is the cover image. The data does not seem to be consitent though.
-            return self.listOfImageUrlStrings?[0]
+        if let imageUrlStringDict = self.dictOfImageUrls {
+            if let originalImageUrlString = imageUrlStringDict["original"] as? String {
+                return originalImageUrlString
+            } else if let arrayOfNonOriginalImageUrlString = imageUrlStringDict["nonoriginals"] as? [String], arrayOfNonOriginalImageUrlString.count > 0 {
+                return arrayOfNonOriginalImageUrlString[0]
+            } else {
+                return nil
+            }
         }
         return nil
-    }
-    
-    func getListOfImageUrlString() -> [String]? {
-        return self.listOfImageUrlStrings
     }
     
     func getPermaLinkUrlString() -> String {
