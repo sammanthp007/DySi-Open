@@ -29,6 +29,11 @@ DySi Open uses Dynamic Signals open apis.
 - [x] User sees Launch Image when they open the app
 - [x] User sees empty table message when the table does not have any posts to
   show. User will not see empty table cells.
+- [x] User sees progress indicator at the bottom of the screen signifying a
+  loading page when the web page of the permalink is being loaded
+- [x] Not a feature (actually a discouraged action): overrode SSL requirements
+  so users can view resources from links that use `HTTP` (since there were
+  images that used `http`)
 
 > Feel free to surprise us with anything cool you can do to this project.
 
