@@ -47,7 +47,7 @@ extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
                     return completion(nil)
                 }
             } else {
-                let newError = NSError(domain: "DySiAllPostViewModelError", code: 404, userInfo: ["message": "DySiDataManager gave neither error nor rawDict"])
+                let newError = NSError(domain: "DySiAllPostViewModelError", code: 100, userInfo: ["message": "DySiDataManager gave neither error nor rawDict"])
                 return completion(newError)
             }
         }
