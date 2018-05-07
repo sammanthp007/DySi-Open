@@ -43,7 +43,7 @@ class PostTableNodeCell: ASCellNode {
         self.authorImageNode.shouldCacheImage = true
         
         topSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 1.0, cornerColor: .black, fill: .black)
-        bottomSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 1.0, cornerColor: .black, fill: .black)
+        bottomSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 2.0, cornerColor: .black, fill: .black)
         
         // get authors displayName if exists
         if let author = postModel.author, author.hasAuthor(), let authorDisplayName = postModel.getDisplayableAuthorName() {
@@ -134,23 +134,26 @@ class PostTableNodeCell: ASCellNode {
         mainVerticalStack.justifyContent = .center
 
         mainVerticalStack.children = []
-        
-        // display image, if exists
-        if photoImageNode.url != nil {
-            mainVerticalStack.children?.append(ASRatioLayoutSpec(ratio: 1.0, child: photoImageNode))
-        }
-        
+
         // display author information, if exists
         if let headStackContentCount = headerStack.children?.count, headStackContentCount > 0 {
             mainVerticalStack.children?.append(ASInsetLayoutSpec(insets: Constants.CellLayout.InsetForHeader, child: headerStack))
         }
-        
+
+        // display image, if exists
+        if photoImageNode.url != nil {
+            mainVerticalStack.children?.append(ASRatioLayoutSpec(ratio: 1.0, child: photoImageNode))
+        }
+
         mainVerticalStack.children?.append(bodyStack)
-        
+
+        // display description, if exists
         if let footerStackContentCount = footerStack.children?.count, footerStackContentCount > 0 {
             mainVerticalStack.children?.append(ASInsetLayoutSpec(insets: Constants.CellLayout.InsetForFooter, child: footerStack))
         }
         
+        mainVerticalStack.children?.append(bottomSeparator)
+
         return mainVerticalStack
     }
 }
