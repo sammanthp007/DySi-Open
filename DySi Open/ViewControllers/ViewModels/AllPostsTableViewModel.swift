@@ -21,29 +21,41 @@ class AllPostsTableViewModel {
     
     // Holds data received from api call
     private var allPosts: [DySiPost]?
+    
+    private var cellViewModels: [PostTableNodeCellViewModel] = [PostTableNodeCellViewModel]() {
+        didSet {
+            self.reloadTableNodeClosure?()
+        }
+    }
+    
+    var isLoading: Bool = false {
+        didSet {
+            self.updateLoadingStatus?()
+        }
+    }
 
     init() {
         self.dysiDataManager = DySiDataManager()
     }
+    
+    var reloadTableNodeClosure: (()->())?
+    var updateLoadingStatus: (()->())?
 }
 
 extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
     func fetchAllPosts(completion: @escaping (Error?) -> Void) {
-        self.dysiDataManager.fetchAllPublicPosts { (error, rawDict) in
+        // TODO: handle activity indicator from here
+        self.isLoading = true
+        
+        self.dysiDataManager.fetchAllPublicPosts { [weak self] (error, rawDict) in
+            self?.isLoading = false
             if let error = error {
                 return completion(error)
             } else if let rawPostsDict = rawDict {
                 // since this will affect the UI
                 DispatchQueue.main.async {
                     // convert dictionary to model objects
-                    var newPost: [DySiPost] = []
-                    for eachPostDict in rawPostsDict {
-                        if let currNewPost = DySiPost(postDict: eachPostDict) {
-                            newPost.append(currNewPost)
-                        }
-                    }
-                    
-                    self.allPosts = newPost
+                    self?.allPosts = self?.createPostObjects(from: rawPostsDict)
                     return completion(nil)
                 }
             } else {
@@ -51,6 +63,16 @@ extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
                 return completion(newError)
             }
         }
+    }
+    
+    func createPostObjects(from posts: [[String : Any]]) -> [DySiPost] {
+        var newPosts: [DySiPost] = []
+        for eachPostDict in posts {
+            if let currNewPost = DySiPost(postDict: eachPostDict) {
+                newPosts.append(currNewPost)
+            }
+        }
+        return newPosts
     }
     
     
@@ -68,4 +90,14 @@ extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
         }
         return  URL(string: Constants.ForDySiAPI.URLS.FallBackPermaLink)!
     }
+}
+
+struct PostTableNodeCellViewModel {
+    let authorDisplayNameText: String
+    let postTitleText: String
+    let postCreatedDateText: String
+    let postDescriptionText: String
+    let postSourceSiteText: String
+    let authorImageUrlString: String
+    let coverImageUrlString: String
 }
