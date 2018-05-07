@@ -13,13 +13,19 @@ import WebKit
 class PostInWebViewController: ASViewController<ASDisplayNode> {
 
     var webNode: ASDisplayNode!
-    var webView: WKWebView!
     var currentURL: URL!
 
     init(linkToOpen: URL) {
         self.currentURL = linkToOpen
-        let node = ASDisplayNode()
+
+        let node = ASDisplayNode { () -> UIView in
+            let webConfiguration = WKWebViewConfiguration()
+            let webView = WKWebView(frame: .zero, configuration: webConfiguration)
+            return webView
+        }
+        
         super.init(node: node)
+        
         self.webNode = node
     }
     
@@ -32,21 +38,15 @@ class PostInWebViewController: ASViewController<ASDisplayNode> {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        let myRequest = URLRequest(url: currentURL)
+        (self.webNode.view as! WKWebView).load(myRequest)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
