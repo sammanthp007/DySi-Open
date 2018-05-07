@@ -32,8 +32,6 @@ class DySiPost {
             return
         }
 
-        // TODO: handle for external displayMode (check api documentation)
-
         // get the first image
         var imageUrlStringDict: [String: Any]? = [:]
         var arrayOfImageStrings: [String] = []
@@ -79,11 +77,6 @@ class DySiPost {
         return self.title
     }
     
-    func getCreatedDateAsDate() -> Date {
-        // TODO:
-        return Date()
-    }
-    
     func getDisplayableDateString() -> String? {
         if let dateString = self.createdDateString {
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSX"
@@ -112,7 +105,6 @@ class DySiPost {
     }
     
     func getPermaLinkUrlString() -> String {
-        // TODO
         return self.cleanPermaLinkString ?? Constants.UserFacingErrors.ForPostModel.PermaLinkNotAvailable
     }
     

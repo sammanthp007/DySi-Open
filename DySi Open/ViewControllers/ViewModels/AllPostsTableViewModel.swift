@@ -29,23 +29,26 @@ class AllPostsTableViewModel {
 
 extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
     func fetchAllPosts(completion: @escaping (Error?) -> Void) {
-        self.dysiDataManager.fetchAllPublicPosts { (error, rawPostsDict) in
+        self.dysiDataManager.fetchAllPublicPosts { (error, rawDict) in
             if let error = error {
                 return completion(error)
-            }
-            /* since this will affect the UI */
-            DispatchQueue.main.async {
-                /* probably this is where we convert the dictionary to model objects */
-                //                self.allCharacters = allCharacters
-                var newPost: [DySiPost] = []
-                // TODO: do not force unwrap
-                for eachPostDict in rawPostsDict! {
-                    // TODO: do not force unwrap
-                    newPost.append(DySiPost(postDict: eachPostDict)!)
+            } else if let rawPostsDict = rawDict {
+                // since this will affect the UI
+                DispatchQueue.main.async {
+                    // convert dictionary to model objects
+                    var newPost: [DySiPost] = []
+                    for eachPostDict in rawPostsDict {
+                        if let currNewPost = DySiPost(postDict: eachPostDict) {
+                            newPost.append(currNewPost)
+                        }
+                    }
+                    
+                    self.allPosts = newPost
+                    return completion(nil)
                 }
-                
-                self.allPosts = newPost
-                completion(nil)
+            } else {
+                let newError = NSError(domain: "DySiAllPostViewModelError", code: 404, userInfo: ["message": "DySiDataManager gave neither error nor rawDict"])
+                return completion(newError)
             }
         }
     }
