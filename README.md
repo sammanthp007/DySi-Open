@@ -26,6 +26,7 @@ DySi Open uses Dynamic Signals open apis.
 - [x] User sees an alert when there's a networking error.
 - [x] User sees a loading state while waiting for posts to load.
 - [x] User sees images being rendered progressively as it gets downloaded.
+- [x] User sees Launch Image when they open the app
 
 > Feel free to surprise us with anything cool you can do to this project.
 
