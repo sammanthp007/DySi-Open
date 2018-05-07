@@ -11,7 +11,7 @@ import Foundation
 protocol AllPostTableViewModelProtocol {
     func fetchAllPosts (completion: @escaping (_ error: Error?) -> Void) -> Void
     func getNumberOfRowsInSection (in section: Int) -> Int
-    func getOnePost(for indexPath: IndexPath) -> DySiPost?
+    func getCellViewModel(for indexPath: IndexPath) -> PostTableNodeCellViewModelProtocol?
     func getPermalinkOfPost(for indexPath: IndexPath) -> URL
 }
 
@@ -54,8 +54,10 @@ extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
             } else if let rawPostsDict = rawDict {
                 // since this will affect the UI
                 DispatchQueue.main.async {
-                    // convert dictionary to model objects
-                    self?.allPosts = self?.createPostObjects(from: rawPostsDict)
+                    // convert dictionary to Post objects
+                    self?.allPosts = self?.createListOfPosts(from: rawPostsDict)
+                    // create an array of tableNodeViewModels from Posts
+                    self?.cellViewModels = self?.createListOfTableNodeCellViewModels(from: self?.allPosts) ?? []
                     return completion(nil)
                 }
             } else {
@@ -65,7 +67,7 @@ extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
         }
     }
     
-    func createPostObjects(from posts: [[String : Any]]) -> [DySiPost] {
+    func createListOfPosts(from posts: [[String : Any]]) -> [DySiPost] {
         var newPosts: [DySiPost] = []
         for eachPostDict in posts {
             if let currNewPost = DySiPost(postDict: eachPostDict) {
@@ -75,13 +77,24 @@ extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
         return newPosts
     }
     
+    func createListOfTableNodeCellViewModels(from posts: [DySiPost]?) -> [PostTableNodeCellViewModel] {
+        var viewModels: [PostTableNodeCellViewModel] = []
+        guard let posts = posts else {
+            return viewModels
+        }
+
+        for post in posts {
+            viewModels.append(PostTableNodeCellViewModel(post: post))
+        }
+        return viewModels
+    }
     
     func getNumberOfRowsInSection(in section: Int) -> Int {
         return self.allPosts?.count ?? 0
     }
     
-    func getOnePost(for indexPath: IndexPath) -> DySiPost? {
-        return self.allPosts?[indexPath.row]
+    func getCellViewModel(for indexPath: IndexPath) -> PostTableNodeCellViewModelProtocol? {
+        return self.cellViewModels[indexPath.row]
     }
     
     func getPermalinkOfPost(for indexPath: IndexPath) -> URL {
@@ -90,14 +103,4 @@ extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
         }
         return  URL(string: Constants.ForDySiAPI.URLS.FallBackPermaLink)!
     }
-}
-
-struct PostTableNodeCellViewModel {
-    let authorDisplayNameText: String
-    let postTitleText: String
-    let postCreatedDateText: String
-    let postDescriptionText: String
-    let postSourceSiteText: String
-    let authorImageUrlString: String
-    let coverImageUrlString: String
 }

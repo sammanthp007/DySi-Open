@@ -35,7 +35,7 @@ class PostTableNodeCell: ASCellNode {
         return imageNode
     }()
 
-    init(postModel: DySiPost) {
+    init(postCellViewModel: PostTableNodeCellViewModelProtocol) {
         super.init()
         self.selectionStyle = .none
         self.setUpUIOfNodes()
@@ -43,35 +43,35 @@ class PostTableNodeCell: ASCellNode {
         topSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 1.0, cornerColor: .black, fill: .black)
         bottomSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 2.0, cornerColor: .black, fill: .black)
 
-        // get authors displayName if exists
-        if let author = postModel.author, author.hasAuthor(), let authorDisplayName = postModel.getDisplayableAuthorName() {
+        // get authors displayName if exists and hinted by API to show
+        if postCellViewModel.showAuthorInfoInDisplay, let authorDisplayName = postCellViewModel.displayableAuthorName {
             self.authorDisplayNameLabel.attributedText = self.getAttributedStringForAuthorName(withSize: Constants.CellLayout.TitleFontSize, authorName: authorDisplayName)
 
             // get author profile image if exists
-            if let authorProfileImageURLString = postModel.getProfileImageUrlStringOfAuthor() {
+            if let authorProfileImageURLString = postCellViewModel.profileImageUrlStringOfAuthor {
                 self.authorImageNode.url = URL(string: authorProfileImageURLString)
             }
         }
 
-        if let coverImageUrlString = postModel.getCoverImageURLString() {
+        if let coverImageUrlString = postCellViewModel.coverImageURLString {
             if let url = URL(string: coverImageUrlString) {
                 self.photoImageNode.url = url
             }
         }
 
-        if let postTitleString = postModel.getDisplayableTitle() {
+        if let postTitleString = postCellViewModel.displayableTitle {
             self.postTitleLabel.attributedText = self.getAttributedStringForPostTitle(withSize: Constants.CellLayout.TitleFontSize, postTitleString: postTitleString)
         }
 
-        if let sourceSiteString = postModel.getSourceSiteString() {
+        if let sourceSiteString = postCellViewModel.sourceSiteString {
             self.postSourceSiteString.attributedText = self.getAttributedStringForSourceSite(withSize: Constants.CellLayout.MetaDataFontSize, postSourceSiteString: sourceSiteString)
         }
 
-        if let createdAtDateString = postModel.getDisplayableDateString() {
+        if let createdAtDateString = postCellViewModel.displayableDateString {
             self.postCreatedAtDateLabel.attributedText = self.getAttributedStringForCreatedAtDateLabel(withSize: Constants.CellLayout.MetaDataFontSize, createdAtDateText: createdAtDateString)
         }
 
-        if let postDescriptionText = postModel.getDescriptionText() {
+        if let postDescriptionText = postCellViewModel.descriptionText {
             self.postDescriptionLabel.attributedText = self.getAttributedStringForDescription(withSize: Constants.CellLayout.BodyFontSize, descriptionText: postDescriptionText)
         }
 
