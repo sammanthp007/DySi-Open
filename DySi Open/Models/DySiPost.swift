@@ -20,7 +20,7 @@ class DySiPost {
     var descriptionText: String?
     var createdDateString: String?
     // TODO: change to list of images and choose the best one for the purpose accordingly, or store all links and provide accordingly
-    var imageUrlString: String?
+    var listOfImageUrlStrings: [String]?
     var cleanPermaLinkString: String?
     
     private let dateFormatter = DateFormatter()
@@ -35,10 +35,14 @@ class DySiPost {
         
         // TODO: handle for external displayMode (check api documentation)
         
-        guard let images = postDict["images"] as? [String: Any], let originalImage = images["Original"] as? [String: Any], let imageUrl = originalImage["url"] as? String else {
-            // TODO: Handle this error in a safer way
-            print ("error parsing images")
-            return
+        // get the first image
+        var listOfUrlStrings: [String]? = []
+        if let media = postDict["media"] as? [[String: Any]]  {
+            for mediaContent in media {
+                if let urlString = mediaContent["url"] as? String, let role = mediaContent["role"] as? String, role.lowercased().contains("image") {
+                    listOfUrlStrings?.append(urlString)
+                }
+            }
         }
         
         // get info if author information should be shown in byline
@@ -48,7 +52,7 @@ class DySiPost {
         self.title = title
         self.descriptionText = descriptionText
         self.createdDateString = createdDateString
-        self.imageUrlString = imageUrl
+        self.listOfImageUrlStrings = listOfUrlStrings
         self.cleanPermaLinkString = cleanPermaLinkString
     }
     
@@ -87,9 +91,15 @@ class DySiPost {
         return nil
     }
     
-    func getCoverImageURLString() -> String {
-        // TODO
-        return self.imageUrlString ?? Constants.UserFacingErrors.ForPostModel.ImageLinkNotAvailable
+    func getCoverImageURLString() -> String? {
+        if let countOfUrlStrings = self.listOfImageUrlStrings?.count, countOfUrlStrings > 0 {
+            return self.listOfImageUrlStrings?[0]
+        }
+        return nil
+    }
+    
+    func getListOfImageUrlString() -> [String]? {
+        return self.listOfImageUrlStrings
     }
     
     func getPermaLinkUrlString() -> String {

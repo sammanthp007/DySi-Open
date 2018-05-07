@@ -50,6 +50,17 @@ class PostTableNodeCell: ASCellNode {
             }
         }
         
+        if let arrayOfUrlString = postModel.listOfImageUrlStrings, arrayOfUrlString.count > 0 {
+            var arrayOfUrl: [URL] = []
+            for urlString in arrayOfUrlString {
+                if let url = URL(string: urlString) {
+                    arrayOfUrl.append(url)
+                }
+            }
+
+            self.photoImageNode.urls = arrayOfUrl
+        }
+        
         self.postTitleLabel.attributedText = self.getAttributedStringForPostTitle(withSize: Constants.CellLayout.FontSize, postTitleString: postModel.getDisplayableTitle())
         
         if let sourceSiteString = postModel.getSourceSiteString() {
@@ -94,9 +105,21 @@ class PostTableNodeCell: ASCellNode {
         }
         
         let bodyStack = ASStackLayoutSpec.vertical()
+        bodyStack.children = []
         bodyStack.spacing = Constants.CellLayout.VerticalBuffer
-        bodyStack.children = [postTitleLabel, postSourceSiteString, postCreatedAtDateLabel]
+
+        if postTitleLabel.attributedText != nil {
+            bodyStack.children?.append(postTitleLabel)
+        }
         
+        if postSourceSiteString.attributedText != nil {
+            bodyStack.children?.append(postSourceSiteString)
+        }
+        
+        if postCreatedAtDateLabel.attributedText != nil {
+            bodyStack.children?.append(postCreatedAtDateLabel)
+        }
+
         //        timeIntervalLabel.style.spacingBefore = Constants.CellLayout.HorizontalBuffer
         //        headerChildren.append(timeIntervalLabel)
         
@@ -109,10 +132,15 @@ class PostTableNodeCell: ASCellNode {
         let mainVerticalStack = ASStackLayoutSpec.vertical()
         mainVerticalStack.spacing = 20
         mainVerticalStack.justifyContent = .center
+
+        mainVerticalStack.children = []
         
+        // display image, if exists
+        if photoImageNode.url != nil {
+            mainVerticalStack.children?.append(ASRatioLayoutSpec(ratio: 1.0, child: photoImageNode))
+        }
         
-        mainVerticalStack.children = [ASRatioLayoutSpec(ratio: 1.0, child: photoImageNode)]
-        
+        // display author information, if exists
         if let headStackContentCount = headerStack.children?.count, headStackContentCount > 0 {
             mainVerticalStack.children?.append(ASInsetLayoutSpec(insets: Constants.CellLayout.InsetForHeader, child: headerStack))
         }
