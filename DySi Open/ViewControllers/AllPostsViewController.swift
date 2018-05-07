@@ -43,23 +43,17 @@ class AllPostsViewController: ASViewController<ASTableNode> {
 
         // Do any additional setup after loading the view.
         setupPullToRefresh()
-        Connectivity.showAlertIfNotConnectedToInternet(viewController: self, completion: nil)
         setupActivityIndicator()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
 
         DispatchQueue.main.async {
             self.activityIndicator.startAnimating()
         }
         self.fetchAllPosts { (error) in
-            // remove the activity indicator
+            // remove activity indicator
             self.activityIndicator.stopAnimating()
 
             if let error = error {
-                // TODO: show alert to user with a friendly error message
-                print ("Error: ", error)
+                ErrorHandler.displayErrorOnDeviceScreen(viewController: self, error: error)
             } else {
                 DispatchQueue.main.async {
                     self.tableNode.reloadData()
@@ -108,7 +102,7 @@ extension AllPostsViewController {
             }
         }
     }
-    
+
     func setupPullToRefresh() -> Void {
         // set up pull to refresh
         let refreshControl = UIRefreshControl()
@@ -116,7 +110,7 @@ extension AllPostsViewController {
         // add refresh control to table view
         (tableNode.view as UITableView).insertSubview(refreshControl, at: 0)
     }
-    
+
     func setupActivityIndicator() {
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         self.activityIndicator = activityIndicator
@@ -128,20 +122,17 @@ extension AllPostsViewController {
     }
     
     @objc func refreshControlAction(_ refreshControl: UIRefreshControl) {
-        Connectivity.showAlertIfNotConnectedToInternet(viewController: self) { (action) in
-            refreshControl.endRefreshing()
-            return
-        }
-        
         self.fetchAllPosts { (error) in
             if let error = error {
-                // TODO: show alert to user with a friendly error message
-                print ("Error: ", error)
+                ErrorHandler.displayErrorOnDeviceScreen(viewController: self, error: error) { _ in
+                    // Tell the refreshControl to stop spinning
+                    refreshControl.endRefreshing()
+                }
             } else {
                 DispatchQueue.main.async {
                     // update table
                     self.tableNode.reloadData()
-                    
+
                     // Tell the refreshControl to stop spinning
                     refreshControl.endRefreshing()
                 }

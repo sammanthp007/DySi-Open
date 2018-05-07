@@ -22,6 +22,7 @@
 		BBAC8FB3209FDEB500657561 /* PostInWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FB2209FDEB500657561 /* PostInWebViewController.swift */; };
 		BBAC8FB5209FF31C00657561 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FB4209FF31C00657561 /* UIViewController.swift */; };
 		BBAC8FB8209FF5AA00657561 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FB7209FF5AA00657561 /* Connectivity.swift */; };
+		BBAC8FBC20A0340F00657561 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FBB20A0340F00657561 /* ErrorHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		BBAC8FB2209FDEB500657561 /* PostInWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInWebViewController.swift; sourceTree = "<group>"; };
 		BBAC8FB4209FF31C00657561 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		BBAC8FB7209FF5AA00657561 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
+		BBAC8FBB20A0340F00657561 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		ECB8EC86F433885CE1F38424 /* Pods-DySi Open.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DySi Open.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DySi Open/Pods-DySi Open.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				BBAC8FB7209FF5AA00657561 /* Connectivity.swift */,
+				BBAC8FBB20A0340F00657561 /* ErrorHandler.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				BBAC8FB1209F86D900657561 /* PostTableNodeCell.swift in Sources */,
 				BBAC8FB5209FF31C00657561 /* UIViewController.swift in Sources */,
 				BB09C975209E7F1A00735F83 /* AllPostsTableViewModel.swift in Sources */,
+				BBAC8FBC20A0340F00657561 /* ErrorHandler.swift in Sources */,
 				BB09C971209E7D4300735F83 /* DySiPost.swift in Sources */,
 				BB09C96F209E7C6100735F83 /* DySiDataManager.swift in Sources */,
 				BBAC8FAC209F770300657561 /* Constants.swift in Sources */,
