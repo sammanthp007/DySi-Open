@@ -26,8 +26,8 @@ class AllPostsViewController: ASViewController<ASTableNode> {
         super.init(node: tableNode)
         self.tableNode = tableNode
         self.tableNode.dataSource = self
-        /* TODO: create a dictionary of string to get this string from */
-        self.navigationItem.title = "DySi Open"
+
+        self.navigationItem.title = Constants.UILabels.AllPostViewNavigationItemTitle
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -77,11 +77,12 @@ extension AllPostsViewController: ASTableDataSource {
         return self.viewModel.getNumberOfRowsInSection(in: section)
     }
     
-    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {        
+    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let nodeBlock: ASCellNodeBlock = {
             // TODO: forced unwrapping here
             return PostTableNodeCell(postModel: self.viewModel.getOnePost(for: indexPath)!)
         }
+
         return nodeBlock
     }
 }

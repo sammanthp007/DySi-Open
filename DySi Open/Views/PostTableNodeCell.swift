@@ -36,6 +36,7 @@ class PostTableNodeCell: ASCellNode {
     
     init(postModel: DySiPost) {
         super.init()
+        self.selectionStyle = .none
         
         topSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 1.0, cornerColor: .black, fill: .black)
         bottomSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 1.0, cornerColor: .black, fill: .black)
