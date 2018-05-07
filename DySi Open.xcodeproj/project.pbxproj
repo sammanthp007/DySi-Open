@@ -24,7 +24,18 @@
 		BBAC8FB8209FF5AA00657561 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FB7209FF5AA00657561 /* Connectivity.swift */; };
 		BBAC8FBC20A0340F00657561 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FBB20A0340F00657561 /* ErrorHandler.swift */; };
 		BBAC8FBE20A0393800657561 /* ASTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FBD20A0393800657561 /* ASTableNode.swift */; };
+		BBAC8FC620A0B8E500657561 /* DySiOpenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FC520A0B8E500657561 /* DySiOpenTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BBAC8FC820A0B8E500657561 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB467D79209D039D008E2331 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB467D80209D039D008E2331;
+			remoteInfo = "DySi Open";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		709A63699546813020582F76 /* Pods-DySi Open.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DySi Open.release.xcconfig"; path = "Pods/Target Support Files/Pods-DySi Open/Pods-DySi Open.release.xcconfig"; sourceTree = "<group>"; };
@@ -47,6 +58,9 @@
 		BBAC8FB7209FF5AA00657561 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		BBAC8FBB20A0340F00657561 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		BBAC8FBD20A0393800657561 /* ASTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASTableNode.swift; sourceTree = "<group>"; };
+		BBAC8FC320A0B8E500657561 /* DySiOpenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DySiOpenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBAC8FC520A0B8E500657561 /* DySiOpenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DySiOpenTests.swift; sourceTree = "<group>"; };
+		BBAC8FC720A0B8E500657561 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECB8EC86F433885CE1F38424 /* Pods-DySi Open.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DySi Open.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DySi Open/Pods-DySi Open.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +70,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				00FDEAF65AC4420B2A39AF12 /* Pods_DySi_Open.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBAC8FC020A0B8E500657561 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				BB467D83209D039D008E2331 /* DySi Open */,
+				BBAC8FC420A0B8E500657561 /* DySiOpenTests */,
 				BB467D82209D039D008E2331 /* Products */,
 				6255412342D32B5091B001D1 /* Pods */,
 				2438FEC6B770AC0125517710 /* Frameworks */,
@@ -136,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				BB467D81209D039D008E2331 /* DySi Open.app */,
+				BBAC8FC320A0B8E500657561 /* DySiOpenTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,6 +200,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		BBAC8FC420A0B8E500657561 /* DySiOpenTests */ = {
+			isa = PBXGroup;
+			children = (
+				BBAC8FC520A0B8E500657561 /* DySiOpenTests.swift */,
+				BBAC8FC720A0B8E500657561 /* Info.plist */,
+			);
+			path = DySiOpenTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -200,6 +232,24 @@
 			productReference = BB467D81209D039D008E2331 /* DySi Open.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BBAC8FC220A0B8E500657561 /* DySiOpenTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BBAC8FCA20A0B8E500657561 /* Build configuration list for PBXNativeTarget "DySiOpenTests" */;
+			buildPhases = (
+				BBAC8FBF20A0B8E500657561 /* Sources */,
+				BBAC8FC020A0B8E500657561 /* Frameworks */,
+				BBAC8FC120A0B8E500657561 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BBAC8FC920A0B8E500657561 /* PBXTargetDependency */,
+			);
+			name = DySiOpenTests;
+			productName = DySiOpenTests;
+			productReference = BBAC8FC320A0B8E500657561 /* DySiOpenTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -212,6 +262,10 @@
 				TargetAttributes = {
 					BB467D80209D039D008E2331 = {
 						CreatedOnToolsVersion = 9.3;
+					};
+					BBAC8FC220A0B8E500657561 = {
+						CreatedOnToolsVersion = 9.3;
+						TestTargetID = BB467D80209D039D008E2331;
 					};
 				};
 			};
@@ -229,6 +283,7 @@
 			projectRoot = "";
 			targets = (
 				BB467D80209D039D008E2331 /* DySi Open */,
+				BBAC8FC220A0B8E500657561 /* DySiOpenTests */,
 			);
 		};
 /* End PBXProject section */
@@ -240,6 +295,13 @@
 			files = (
 				BB467D8F209D039E008E2331 /* LaunchScreen.storyboard in Resources */,
 				BB467D8C209D039E008E2331 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBAC8FC120A0B8E500657561 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +391,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BBAC8FBF20A0B8E500657561 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBAC8FC620A0B8E500657561 /* DySiOpenTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BBAC8FC920A0B8E500657561 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB467D80209D039D008E2331 /* DySi Open */;
+			targetProxy = BBAC8FC820A0B8E500657561 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BB467D8D209D039E008E2331 /* LaunchScreen.storyboard */ = {
@@ -495,6 +573,46 @@
 			};
 			name = Release;
 		};
+		BBAC8FCB20A0B8E500657561 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K86KHC28SR;
+				INFOPLIST_FILE = DySiOpenTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sammanapps.DySiOpenTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DySi Open.app/DySi Open";
+			};
+			name = Debug;
+		};
+		BBAC8FCC20A0B8E500657561 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K86KHC28SR;
+				INFOPLIST_FILE = DySiOpenTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sammanapps.DySiOpenTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DySi Open.app/DySi Open";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -512,6 +630,15 @@
 			buildConfigurations = (
 				BB467D94209D039E008E2331 /* Debug */,
 				BB467D95209D039E008E2331 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BBAC8FCA20A0B8E500657561 /* Build configuration list for PBXNativeTarget "DySiOpenTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBAC8FCB20A0B8E500657561 /* Debug */,
+				BBAC8FCC20A0B8E500657561 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
