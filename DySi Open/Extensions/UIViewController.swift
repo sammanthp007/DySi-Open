@@ -9,7 +9,6 @@
 import UIKit
 
 extension UIViewController {
-    
     func displayMessageToUserUsingAlert(title: String, message: String, style: UIAlertControllerStyle = UIAlertControllerStyle.alert, completion: (() -> Void)?, okButtonText: String, actionStyle: UIAlertActionStyle = UIAlertActionStyle.default, afterHittingAction: ((UIAlertAction) -> Void)?) -> Void {
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
         let action = UIAlertAction(title: okButtonText, style: UIAlertActionStyle.default, handler: afterHittingAction)
