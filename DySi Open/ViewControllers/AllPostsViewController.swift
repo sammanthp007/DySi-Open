@@ -43,16 +43,34 @@ class AllPostsViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        // set up pull to refresh
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
+        // add refresh control to table view
+        (tableNode.view as UITableView).insertSubview(refreshControl, at: 0)
+        
         setupActivityIndicator()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
+
         DispatchQueue.main.async {
             self.activityIndicator.startAnimating()
         }
-        self.fetchAllPosts()
+        self.fetchAllPosts { (error) in
+            // remove the activity indicator
+            self.activityIndicator.stopAnimating()
+
+            if let error = error {
+                // TODO: show alert to user with a friendly error message
+                print ("Error: ", error)
+            } else {
+                DispatchQueue.main.async {
+                    self.tableNode.reloadData()
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,17 +104,12 @@ extension AllPostsViewController: ASTableDelegate {
 
 extension AllPostsViewController {
     // helper functions
-    func fetchAllPosts() {
+    func fetchAllPosts(completion: @escaping (_ error: Error?) -> Void) {
         self.viewModel.fetchAllPosts { (error) in
-            // remove the activity indicator
-            self.activityIndicator.stopAnimating()
             if let error = error {
-                // TODO: show alert to user with a friendly error message
-                print ("Error: ", error)
+                return completion(error)
             } else {
-                DispatchQueue.main.async {
-                    self.tableNode.reloadData()
-                }
+                return completion(nil)
             }
         }
     }
@@ -109,5 +122,22 @@ extension AllPostsViewController {
         refreshRect.origin = CGPoint(x: (bounds.size.width - activityIndicator.frame.size.width) / 2.0, y: (bounds.size.height - activityIndicator.frame.size.height) / 2.0)
         activityIndicator.frame = refreshRect
         self.node.view.addSubview(activityIndicator)
+    }
+    
+    @objc func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        self.fetchAllPosts { (error) in
+            if let error = error {
+                // TODO: show alert to user with a friendly error message
+                print ("Error: ", error)
+            } else {
+                DispatchQueue.main.async {
+                    // update table
+                    self.tableNode.reloadData()
+                    
+                    // Tell the refreshControl to stop spinning
+                    refreshControl.endRefreshing()
+                }
+            }
+        }
     }
 }
