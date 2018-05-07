@@ -185,7 +185,7 @@ extension PostTableNodeCell {
         ]
         return NSAttributedString(string: authorName, attributes: attr)
     }
-    
+
     func getAttributedStringForPostTitle(withSize size: CGFloat, postTitleString: String) -> NSAttributedString {
         let attr = [
             NSAttributedStringKey.foregroundColor: UIColor.black,
@@ -193,7 +193,7 @@ extension PostTableNodeCell {
         ]
         return NSAttributedString(string: postTitleString, attributes: attr)
     }
-    
+
     func getAttributedStringForCreatedAtDateLabel(withSize size: CGFloat, createdAtDateText: String) -> NSAttributedString {
         let attr = [
             NSAttributedStringKey.foregroundColor : UIColor.lightGray,
@@ -201,7 +201,7 @@ extension PostTableNodeCell {
         ]
         return NSAttributedString(string: createdAtDateText, attributes: attr)
     }
-    
+
     func getAttributedStringForDescription(withSize size: CGFloat, descriptionText: String) -> NSAttributedString {
         let attr = [
             NSAttributedStringKey.foregroundColor : UIColor.darkGray,
@@ -209,7 +209,7 @@ extension PostTableNodeCell {
         ]
         return NSAttributedString(string: descriptionText, attributes: attr)
     }
-    
+
     func getAttributedStringForSourceSite(withSize size: CGFloat, postSourceSiteString: String) -> NSAttributedString {
         let attr = [
             NSAttributedStringKey.foregroundColor : UIColor.blue,
