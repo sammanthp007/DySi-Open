@@ -20,20 +20,20 @@ class PostTableNodeCell: ASCellNode {
     let postCreatedAtDateLabel = ASTextNode()
     let postDescriptionLabel = ASTextNode()
     let postSourceSiteString = ASTextNode()
-    
+
     let authorImageNode: ASNetworkImageNode = {
         let imageNode = ASNetworkImageNode()
         imageNode.contentMode = .scaleAspectFill
         imageNode.imageModificationBlock = ASImageNodeRoundBorderModificationBlock(0, nil)
         return imageNode
     }()
-    
+
     let photoImageNode: ASNetworkImageNode = {
         let imageNode = ASNetworkImageNode()
         imageNode.contentMode = .scaleAspectFill
         return imageNode
     }()
-    
+
     init(postModel: DySiPost) {
         super.init()
         self.selectionStyle = .none
@@ -41,14 +41,14 @@ class PostTableNodeCell: ASCellNode {
         self.photoImageNode.shouldCacheImage = true
         self.authorImageNode.shouldRenderProgressImages = true
         self.authorImageNode.shouldCacheImage = true
-        
+
         topSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 1.0, cornerColor: .black, fill: .black)
         bottomSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 2.0, cornerColor: .black, fill: .black)
-        
+
         // get authors displayName if exists
         if let author = postModel.author, author.hasAuthor(), let authorDisplayName = postModel.getDisplayableAuthorName() {
-            self.authorDisplayNameLabel.attributedText = self.getAttributedStringForAuthorName(withSize: Constants.CellLayout.FontSize, authorName: authorDisplayName)
-            
+            self.authorDisplayNameLabel.attributedText = self.getAttributedStringForAuthorName(withSize: Constants.CellLayout.TitleFontSize, authorName: authorDisplayName)
+
             // get author profile image if exists
             if let authorProfileImageURLString = postModel.getProfileImageUrlStringOfAuthor() {
                 self.authorImageNode.url = URL(string: authorProfileImageURLString)
@@ -61,97 +61,93 @@ class PostTableNodeCell: ASCellNode {
             }
         }
 
-        self.postTitleLabel.attributedText = self.getAttributedStringForPostTitle(withSize: Constants.CellLayout.FontSize, postTitleString: postModel.getDisplayableTitle())
-        
-        if let sourceSiteString = postModel.getSourceSiteString() {
-            self.postSourceSiteString.attributedText = self.getAttributedStringForSourceSite(withSize: Constants.CellLayout.FontSize, postSourceSiteString: sourceSiteString)
+        if let postTitleString = postModel.getDisplayableTitle() {
+            self.postTitleLabel.attributedText = self.getAttributedStringForPostTitle(withSize: Constants.CellLayout.TitleFontSize, postTitleString: postTitleString)
         }
-        
+
+        if let sourceSiteString = postModel.getSourceSiteString() {
+            self.postSourceSiteString.attributedText = self.getAttributedStringForSourceSite(withSize: Constants.CellLayout.MetaDataFontSize, postSourceSiteString: sourceSiteString)
+        }
+
         if let createdAtDateString = postModel.getDisplayableDateString() {
-            self.postCreatedAtDateLabel.attributedText = self.getAttributedStringForCreatedAtDateLabel(withSize: Constants.CellLayout.FontSize, createdAtDateText: createdAtDateString)
+            self.postCreatedAtDateLabel.attributedText = self.getAttributedStringForCreatedAtDateLabel(withSize: Constants.CellLayout.MetaDataFontSize, createdAtDateText: createdAtDateString)
         }
 
         if let postDescriptionText = postModel.getDescriptionText() {
-            self.postDescriptionLabel.attributedText = self.getAttributedStringForDescription(withSize: Constants.CellLayout.FontSize, descriptionText: postDescriptionText)
+            self.postDescriptionLabel.attributedText = self.getAttributedStringForDescription(withSize: Constants.CellLayout.BodyFontSize, descriptionText: postDescriptionText)
         }
 
         self.automaticallyManagesSubnodes = true
     }
-    
+
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        // Header Stack
+        // initialize the mainVerticalStack
+        let mainVerticalStack = ASStackLayoutSpec.vertical()
+        mainVerticalStack.spacing = 10
+        mainVerticalStack.justifyContent = .center
+
+        mainVerticalStack.children = []
+
+        // Header Stack: contains author info
         var headerChildren: [ASLayoutElement] = []
         let headerStack = ASStackLayoutSpec.horizontal()
         
         // add author information to header stack if exists
         if self.authorDisplayNameLabel.attributedText != nil {
             headerStack.alignItems = .center
-            
+
             // add author profile image to header stack if exists
             if authorImageNode.url != nil {
                 authorImageNode.style.preferredSize = CGSize(width: Constants.CellLayout.UserImageHeight, height: Constants.CellLayout.UserImageHeight)
                 headerChildren.append(ASInsetLayoutSpec(insets: Constants.CellLayout.InsetForAvatar, child: authorImageNode))
             }
-            
             // add author name to header stack
             authorDisplayNameLabel.style.flexShrink = 1.0
             headerChildren.append(authorDisplayNameLabel)
-            
-            let spacer = ASLayoutSpec()
-            spacer.style.flexGrow = 1.0
-            headerChildren.append(spacer)
-            
+
             headerStack.children = headerChildren
         }
-        
-        let bodyStack = ASStackLayoutSpec.vertical()
-        bodyStack.children = []
-        bodyStack.spacing = Constants.CellLayout.VerticalBuffer
 
-        if postTitleLabel.attributedText != nil {
-            bodyStack.children?.append(postTitleLabel)
-        }
-        
-        if postSourceSiteString.attributedText != nil {
-            bodyStack.children?.append(postSourceSiteString)
-        }
-        
-        if postCreatedAtDateLabel.attributedText != nil {
-            bodyStack.children?.append(postCreatedAtDateLabel)
-        }
-
-        //        timeIntervalLabel.style.spacingBefore = Constants.CellLayout.HorizontalBuffer
-        //        headerChildren.append(timeIntervalLabel)
-        
-        let footerStack = ASStackLayoutSpec.vertical()
-        if self.postDescriptionLabel.attributedText != nil {
-            footerStack.children = [postDescriptionLabel]
-        }
-
-        let mainVerticalStack = ASStackLayoutSpec.vertical()
-        mainVerticalStack.spacing = 20
-        mainVerticalStack.justifyContent = .center
-
-        mainVerticalStack.children = []
-
-        // display author information, if exists
+        // Add header stack if not empty
         if let headStackContentCount = headerStack.children?.count, headStackContentCount > 0 {
             mainVerticalStack.children?.append(ASInsetLayoutSpec(insets: Constants.CellLayout.InsetForHeader, child: headerStack))
         }
 
-        // display image, if exists
+        // add post image, if exists
         if photoImageNode.url != nil {
-            mainVerticalStack.children?.append(ASRatioLayoutSpec(ratio: 1.0, child: photoImageNode))
+            mainVerticalStack.children?.append(ASRatioLayoutSpec(ratio: 0.8, child: photoImageNode))
         }
 
-        mainVerticalStack.children?.append(bodyStack)
-
-        // display description, if exists
-        if let footerStackContentCount = footerStack.children?.count, footerStackContentCount > 0 {
-            print (footerStack.children?.count)
-            mainVerticalStack.children?.append(ASInsetLayoutSpec(insets: Constants.CellLayout.InsetForFooter, child: footerStack))
+        // body stack: contains post title and description
+        let bodyStack = ASStackLayoutSpec.vertical()
+        bodyStack.children = []
+        bodyStack.spacing = Constants.CellLayout.VerticalBuffer
+        // add title to stack, if exists
+        if postTitleLabel.attributedText != nil {
+            bodyStack.children?.append(postTitleLabel)
         }
-        
+        // add description to stack, if exists
+        if self.postDescriptionLabel.attributedText != nil {
+            bodyStack.children?.append(postDescriptionLabel)
+        }
+        // display stack, if non empty
+        if let bodyStackContentCount = bodyStack.children?.count, bodyStackContentCount > 0 {
+            mainVerticalStack.children?.append(ASInsetLayoutSpec(insets: Constants.CellLayout.InsetForBody, child: bodyStack))
+        }
+
+        // footer stack: contains metadata
+        let footerStack = ASStackLayoutSpec.vertical()
+        footerStack.children = []
+        footerStack.spacing = Constants.CellLayout.VerticalBuffer
+
+        if postSourceSiteString.attributedText != nil {
+            footerStack.children?.append(postSourceSiteString)
+        }
+        if postCreatedAtDateLabel.attributedText != nil {
+            footerStack.children?.append(postCreatedAtDateLabel)
+        }
+        mainVerticalStack.children?.append(ASInsetLayoutSpec(insets: Constants.CellLayout.InsetForFooter, child: footerStack))
+
         mainVerticalStack.children?.append(bottomSeparator)
 
         return mainVerticalStack
@@ -169,7 +165,7 @@ extension PostTableNodeCell {
     
     func getAttributedStringForPostTitle(withSize size: CGFloat, postTitleString: String) -> NSAttributedString {
         let attr = [
-            NSAttributedStringKey.foregroundColor: UIColor.darkGray,
+            NSAttributedStringKey.foregroundColor: UIColor.black,
             NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: size)
         ]
         return NSAttributedString(string: postTitleString, attributes: attr)
@@ -193,7 +189,7 @@ extension PostTableNodeCell {
     
     func getAttributedStringForSourceSite(withSize size: CGFloat, postSourceSiteString: String) -> NSAttributedString {
         let attr = [
-            NSAttributedStringKey.foregroundColor : UIColor.darkGray,
+            NSAttributedStringKey.foregroundColor : UIColor.blue,
             NSAttributedStringKey.font: UIFont.systemFont(ofSize: size)
         ]
         return NSAttributedString(string: postSourceSiteString, attributes: attr)
