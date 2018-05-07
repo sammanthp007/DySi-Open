@@ -20,7 +20,7 @@ class AllPostsTableViewModel {
     var dysiDataManager: DySiDataManagerProtocol!
     
     // Holds data received from api call
-    var allPosts: [DySiPost]?
+    private var allPosts: [DySiPost]?
 
     init() {
         self.dysiDataManager = DySiDataManager()
