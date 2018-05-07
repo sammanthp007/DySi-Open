@@ -37,10 +37,7 @@ class PostTableNodeCell: ASCellNode {
     init(postModel: DySiPost) {
         super.init()
         self.selectionStyle = .none
-        self.photoImageNode.shouldRenderProgressImages = true
-        self.photoImageNode.shouldCacheImage = true
-        self.authorImageNode.shouldRenderProgressImages = true
-        self.authorImageNode.shouldCacheImage = true
+        self.setUpUIOfNodes()
 
         topSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 1.0, cornerColor: .black, fill: .black)
         bottomSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 2.0, cornerColor: .black, fill: .black)
@@ -91,7 +88,7 @@ class PostTableNodeCell: ASCellNode {
         // Header Stack: contains author info
         var headerChildren: [ASLayoutElement] = []
         let headerStack = ASStackLayoutSpec.horizontal()
-        
+
         // add author information to header stack if exists
         if self.authorDisplayNameLabel.attributedText != nil {
             headerStack.alignItems = .center
@@ -159,6 +156,28 @@ class PostTableNodeCell: ASCellNode {
 }
 
 extension PostTableNodeCell {
+    func setUpUIOfNodes() -> Void {
+        self.photoImageNode.shouldRenderProgressImages = true
+        self.photoImageNode.shouldCacheImage = true
+        self.authorImageNode.shouldRenderProgressImages = true
+        self.authorImageNode.shouldCacheImage = true
+
+        self.authorDisplayNameLabel.maximumNumberOfLines = 1
+        self.authorDisplayNameLabel.truncationMode = NSLineBreakMode.byTruncatingTail
+
+        self.postTitleLabel.maximumNumberOfLines = 3
+        self.postTitleLabel.truncationMode = NSLineBreakMode.byTruncatingTail
+
+        self.postCreatedAtDateLabel.maximumNumberOfLines = 1
+        self.postCreatedAtDateLabel.truncationMode = NSLineBreakMode.byTruncatingTail
+
+        self.postDescriptionLabel.maximumNumberOfLines = 14
+        self.postDescriptionLabel.truncationMode = NSLineBreakMode.byTruncatingTail
+
+        self.postSourceSiteString.maximumNumberOfLines = 1
+        self.postSourceSiteString.truncationMode = NSLineBreakMode.byTruncatingTail
+    }
+
     func getAttributedStringForAuthorName(withSize size: CGFloat, authorName: String) -> NSAttributedString {
         let attr = [
             NSAttributedStringKey.foregroundColor: UIColor.darkGray,
