@@ -32,16 +32,18 @@ class DySiPost {
             return
         }
 
-        // get the first image
+        // TODO: do this in a different function, get the first image
         var imageUrlStringDict: [String: Any]? = [:]
         var arrayOfImageStrings: [String] = []
         if let media = postDict["media"] as? [[String: Any]]  {
             for mediaContent in media {
                 if let urlString = mediaContent["url"] as? String, let role = mediaContent["role"] as? String, role.lowercased().contains("image") {
-                    if role == Constants.ForDySiAPI.RoleOfCoverImage {
-                        imageUrlStringDict?["original"] = urlString
-                    } else {
-                        arrayOfImageStrings.append(urlString)
+                    if let currUrlString = self.getParsableUrlString(urlString: urlString) {
+                        if role == Constants.ForDySiAPI.RoleOfCoverImage {
+                            imageUrlStringDict?["original"] = currUrlString
+                        } else {
+                            arrayOfImageStrings.append(currUrlString)
+                        }
                     }
                 }
             }
@@ -59,6 +61,15 @@ class DySiPost {
         self.createdDateString = createdDateString
         self.dictOfImageUrls = imageUrlStringDict
         self.cleanPermaLinkString = cleanPermaLinkString
+    }
+    
+    private func getParsableUrlString(urlString: String) -> String? {
+        if URL(string: urlString) != nil {
+            return urlString
+        } else if let encodedURLString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), URL(string: encodedURLString) != nil {
+            return encodedURLString
+        }
+        return nil
     }
 
     func getDisplayableAuthorName() -> String? {

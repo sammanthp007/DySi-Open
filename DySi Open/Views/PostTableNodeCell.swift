@@ -30,7 +30,8 @@ class PostTableNodeCell: ASCellNode {
 
     let photoImageNode: ASNetworkImageNode = {
         let imageNode = ASNetworkImageNode()
-        imageNode.contentMode = .scaleAspectFill
+        imageNode.contentMode = .scaleAspectFit
+        imageNode.cropRect = CGRect(x: 0, y: 0, width: 0.0, height: 0.0)
         return imageNode
     }()
 
@@ -112,7 +113,7 @@ class PostTableNodeCell: ASCellNode {
 
         // add post image, if exists
         if photoImageNode.url != nil {
-            mainVerticalStack.children?.append(ASRatioLayoutSpec(ratio: 0.8, child: photoImageNode))
+            mainVerticalStack.children?.append(ASRatioLayoutSpec(ratio: 2.0/3.0, child: photoImageNode))
         }
 
         // body stack: contains post title and description
