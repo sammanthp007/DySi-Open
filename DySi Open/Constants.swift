@@ -15,6 +15,7 @@ struct Constants {
     struct ForDySiAPI {
         struct URLS {
             static let GetAllPosts: String = "https://www.dysiopen.com/v1/posts/public"
+            static let FallBackPermaLink: String = "https://www.google.com"
         }
     }
     

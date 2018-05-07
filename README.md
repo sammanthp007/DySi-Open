@@ -9,13 +9,13 @@ DySi Open uses Dynamic Signals open apis.
   [Dynamic Signals public api](https://www.dysiopen.com/v1/posts/public). The
   response will be a JSON array of post objects. You can see what these objects
   look like [here](https://dev.voicestorm.com/api/responses/postResponse).
-- [ ] Using Texture framework, render the following for each post:
-    - [ ] author (including profile image if it exists)
-    - [ ] title
-    - [ ] description
-    - [ ] creation date
-    - [ ] post’s image (if exists in the “media” array)
-- [ ] Clicking on each post should open the post’s "permalink” in a webView.
+- [x] Using Texture framework, render the following for each post:
+    - [x] author (including profile image if it exists)
+    - [x] title
+    - [x] description
+    - [x] creation date
+    - [x] post’s image (if exists in the “media” array)
+- [x] Clicking on each post should open the post’s "permalink” in a webView.
  
 ## Bonus (Nice to have features):-
 - [ ] Implement pull-to-refresh.
