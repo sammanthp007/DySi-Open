@@ -49,7 +49,9 @@ class DySiPost {
         
         self.author = DySiPostAuthor(authorDict: authorDict)
         self.title = title
-        self.descriptionText = descriptionText
+        if !descriptionText.isEmpty {
+            self.descriptionText = descriptionText
+        }
         self.createdDateString = createdDateString
         self.listOfImageUrlStrings = listOfUrlStrings
         self.cleanPermaLinkString = cleanPermaLinkString
