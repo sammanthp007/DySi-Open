@@ -43,12 +43,7 @@ class AllPostsViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        // set up pull to refresh
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
-        // add refresh control to table view
-        (tableNode.view as UITableView).insertSubview(refreshControl, at: 0)
-        
+        setupPullToRefresh()
         Connectivity.showAlertIfNotConnectedToInternet(viewController: self, completion: nil)
         setupActivityIndicator()
     }
@@ -113,6 +108,14 @@ extension AllPostsViewController {
                 return completion(nil)
             }
         }
+    }
+    
+    func setupPullToRefresh() -> Void {
+        // set up pull to refresh
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
+        // add refresh control to table view
+        (tableNode.view as UITableView).insertSubview(refreshControl, at: 0)
     }
     
     func setupActivityIndicator() {
