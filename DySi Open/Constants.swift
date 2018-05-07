@@ -17,6 +17,7 @@ struct Constants {
             static let GetAllPosts: String = "https://www.dysiopen.com/v1/posts/public"
             static let FallBackPermaLink: String = "https://www.google.com"
         }
+        static let RoleOfCoverImage: String = "image,original"
     }
     
     struct UserFacingErrors {
