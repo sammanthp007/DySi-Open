@@ -23,9 +23,7 @@ class PostInWebViewController: ASViewController<ASDisplayNode> {
             let webView = WKWebView(frame: .zero, configuration: webConfiguration)
             return webView
         }
-        
         super.init(node: node)
-        
         self.webNode = node
     }
     

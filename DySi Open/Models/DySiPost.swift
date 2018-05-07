@@ -33,7 +33,7 @@ class DySiPost {
         }
         
         // TODO: handle for external displayMode (check api documentation)
-        
+
         // get the first image
         var listOfUrlStrings: [String]? = []
         if let media = postDict["media"] as? [[String: Any]]  {
@@ -43,10 +43,10 @@ class DySiPost {
                 }
             }
         }
-        
+
         // get info if author information should be shown in byline
         authorDict["postBylineType"] = postBylineTypeString
-        
+
         self.author = DySiPostAuthor(authorDict: authorDict)
         self.title = title
         if !descriptionText.isEmpty {
@@ -56,7 +56,7 @@ class DySiPost {
         self.listOfImageUrlStrings = listOfUrlStrings
         self.cleanPermaLinkString = cleanPermaLinkString
     }
-    
+
     func getDisplayableAuthorName() -> String? {
         return self.author?.getAuthorDisplayName()
     }
@@ -69,8 +69,8 @@ class DySiPost {
         return self.descriptionText
     }
     
-    func getDisplayableTitle() -> String {
-        return self.title ?? Constants.UserFacingErrors.ForPostModel.TitleNotAvailable
+    func getDisplayableTitle() -> String? {
+        return self.title
     }
     
     func getCreatedDateAsDate() -> Date {
