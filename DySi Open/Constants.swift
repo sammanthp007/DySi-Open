@@ -9,6 +9,9 @@
 import UIKit
 
 struct Constants {
+    struct UILabels {
+        static let AllPostViewNavigationItemTitle: String = "DySi Open"
+    }
     struct ForDySiAPI {
         struct URLS {
             static let GetAllPosts: String = "https://www.dysiopen.com/v1/posts/public"
