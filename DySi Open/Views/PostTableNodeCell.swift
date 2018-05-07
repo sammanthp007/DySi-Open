@@ -132,7 +132,11 @@ class PostTableNodeCell: ASCellNode {
         }
         // display stack, if non empty
         if let bodyStackContentCount = bodyStack.children?.count, bodyStackContentCount > 0 {
-            mainVerticalStack.children?.append(ASInsetLayoutSpec(insets: Constants.CellLayout.InsetForBody, child: bodyStack))
+            if let mainStackCount = mainVerticalStack.children?.count, mainStackCount > 0 {
+                mainVerticalStack.children?.append(ASInsetLayoutSpec(insets: Constants.CellLayout.InsetForBody, child: bodyStack))
+            } else {
+                mainVerticalStack.children?.append(ASInsetLayoutSpec(insets: Constants.CellLayout.InsetForBodyWhenNoHeader, child: bodyStack))
+            }
         }
 
         // footer stack: contains metadata
