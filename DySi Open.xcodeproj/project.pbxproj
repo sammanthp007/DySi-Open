@@ -23,6 +23,7 @@
 		BBAC8FB5209FF31C00657561 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FB4209FF31C00657561 /* UIViewController.swift */; };
 		BBAC8FB8209FF5AA00657561 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FB7209FF5AA00657561 /* Connectivity.swift */; };
 		BBAC8FBC20A0340F00657561 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FBB20A0340F00657561 /* ErrorHandler.swift */; };
+		BBAC8FBE20A0393800657561 /* ASTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FBD20A0393800657561 /* ASTableNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		BBAC8FB4209FF31C00657561 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		BBAC8FB7209FF5AA00657561 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		BBAC8FBB20A0340F00657561 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		BBAC8FBD20A0393800657561 /* ASTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASTableNode.swift; sourceTree = "<group>"; };
 		ECB8EC86F433885CE1F38424 /* Pods-DySi Open.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DySi Open.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DySi Open/Pods-DySi Open.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,6 +163,7 @@
 			children = (
 				BBAC8FAE209F841400657561 /* UIImage.swift */,
 				BBAC8FB4209FF31C00657561 /* UIViewController.swift */,
+				BBAC8FBD20A0393800657561 /* ASTableNode.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			files = (
 				BB09C973209E7EB200735F83 /* AllPostsViewController.swift in Sources */,
 				BBAC8FAF209F841400657561 /* UIImage.swift in Sources */,
+				BBAC8FBE20A0393800657561 /* ASTableNode.swift in Sources */,
 				BBAC8FB1209F86D900657561 /* PostTableNodeCell.swift in Sources */,
 				BBAC8FB5209FF31C00657561 /* UIViewController.swift in Sources */,
 				BB09C975209E7F1A00735F83 /* AllPostsTableViewModel.swift in Sources */,

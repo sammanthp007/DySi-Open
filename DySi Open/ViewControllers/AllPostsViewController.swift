@@ -70,7 +70,13 @@ class AllPostsViewController: ASViewController<ASTableNode> {
 
 extension AllPostsViewController: ASTableDataSource {
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.getNumberOfRowsInSection(in: section)
+        let numberOfPosts = self.viewModel.getNumberOfRowsInSection(in: section)
+        if numberOfPosts == 0 {
+            self.tableNode.setEmptyMessage()
+        } else {
+            self.tableNode.restore()
+        }
+        return numberOfPosts
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {

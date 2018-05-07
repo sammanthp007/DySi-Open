@@ -27,6 +27,8 @@ DySi Open uses Dynamic Signals open apis.
 - [x] User sees a loading state while waiting for posts to load.
 - [x] User sees images being rendered progressively as it gets downloaded.
 - [x] User sees Launch Image when they open the app
+- [x] User sees empty table message when the table does not have any posts to
+  show. User will not see empty table cells.
 
 > Feel free to surprise us with anything cool you can do to this project.
 

@@ -30,6 +30,5 @@ class DySiDataManager: DySiDataManagerProtocol {
                 completion(newError, nil)
             }
         }
-
     }
 }
