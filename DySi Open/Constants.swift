@@ -19,7 +19,7 @@ struct Constants {
         }
         static let RoleOfCoverImage: String = "image,original"
     }
-    
+
     struct UserFacingErrors {
         struct ForPostModel {
             static let NotAvailable: String = "Post not Available"
@@ -30,13 +30,29 @@ struct Constants {
             static let ImageLinkNotAvailable: String = "Image not available"
             static let PermaLinkNotAvailable: String = "Link not available"
         }
-        
-        
+
         struct ForPostAuthorModel {
             static let NameNotAvailable: String = "Author's name not available"
         }
     }
-    
+
+    struct CustomErrors {
+        struct Fallback {
+            static let title: String = "Oops"
+            static let message: String = "Please Retry"
+        }
+
+        static let NSErrorToDisplayableMessage: [String: [Int: (title: String, message: String)]] = [
+            "DySiDataManagerError": [
+                100: (title: "Uh oh!", message: "Unable to open the page. Please retry"),
+                404: (title: "Bad Internet Connection", message: "Please check your internet connection and retry")
+            ],
+            "DySiAllPostViewModelError": [
+                100: (title: "This is bad", message: "Unable to get the data. You might have to restart the app")
+            ]
+        ]
+    }
+
     struct CellLayout {
         static let TitleFontSize: CGFloat = 18
         static let BodyFontSize: CGFloat = 16
