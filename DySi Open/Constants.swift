@@ -48,6 +48,7 @@ struct Constants {
         static let InsetForAvatar = UIEdgeInsets(top: HorizontalBuffer, left: 0, bottom: HorizontalBuffer, right: HorizontalBuffer)
         static let InsetForHeader = UIEdgeInsets(top: 0, left: HorizontalBuffer, bottom: 0, right: HorizontalBuffer)
         static let InsetForBody = UIEdgeInsets(top: 0, left: HorizontalBuffer, bottom: 0, right: HorizontalBuffer)
+        static let InsetForBodyWhenNoHeader = UIEdgeInsets(top: HorizontalBuffer, left: HorizontalBuffer, bottom: 0, right: HorizontalBuffer)
         static let InsetForFooter = UIEdgeInsets(top: VerticalBuffer, left: HorizontalBuffer, bottom: VerticalBuffer, right: HorizontalBuffer)
     }
 }
