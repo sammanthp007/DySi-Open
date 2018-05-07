@@ -11,7 +11,7 @@ import Foundation
 protocol AllPostTableViewModelProtocol {
     func fetchAllPosts (completion: @escaping (_ error: Error?) -> Void) -> Void
     func getNumberOfRowsInSection (in section: Int) -> Int
-    func getOnePost(for indexPath: IndexPath) -> DySiPost?
+    func getCellViewModel(for indexPath: IndexPath) -> PostTableNodeCellViewModelProtocol?
     func getPermalinkOfPost(for indexPath: IndexPath) -> URL
 }
 
@@ -20,30 +20,44 @@ class AllPostsTableViewModel {
     var dysiDataManager: DySiDataManagerProtocol!
     
     // Holds data received from api call
-    var allPosts: [DySiPost]?
+    private var allPosts: [DySiPost]?
+    
+    private var cellViewModels: [PostTableNodeCellViewModel] = [PostTableNodeCellViewModel]() {
+        didSet {
+            self.reloadTableNodeClosure?()
+        }
+    }
+    
+    var isLoading: Bool = false {
+        didSet {
+            self.updateLoadingStatus?()
+        }
+    }
 
     init() {
         self.dysiDataManager = DySiDataManager()
     }
+    
+    var reloadTableNodeClosure: (()->())?
+    var updateLoadingStatus: (()->())?
 }
 
 extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
     func fetchAllPosts(completion: @escaping (Error?) -> Void) {
-        self.dysiDataManager.fetchAllPublicPosts { (error, rawDict) in
+        // TODO: handle activity indicator from here
+        self.isLoading = true
+        
+        self.dysiDataManager.fetchAllPublicPosts { [weak self] (error, rawDict) in
+            self?.isLoading = false
             if let error = error {
                 return completion(error)
             } else if let rawPostsDict = rawDict {
                 // since this will affect the UI
                 DispatchQueue.main.async {
-                    // convert dictionary to model objects
-                    var newPost: [DySiPost] = []
-                    for eachPostDict in rawPostsDict {
-                        if let currNewPost = DySiPost(postDict: eachPostDict) {
-                            newPost.append(currNewPost)
-                        }
-                    }
-                    
-                    self.allPosts = newPost
+                    // convert dictionary to Post objects
+                    self?.allPosts = self?.createListOfPosts(from: rawPostsDict)
+                    // create an array of tableNodeViewModels from Posts
+                    self?.cellViewModels = self?.createListOfTableNodeCellViewModels(from: self?.allPosts) ?? []
                     return completion(nil)
                 }
             } else {
@@ -53,13 +67,34 @@ extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
         }
     }
     
+    func createListOfPosts(from posts: [[String : Any]]) -> [DySiPost] {
+        var newPosts: [DySiPost] = []
+        for eachPostDict in posts {
+            if let currNewPost = DySiPost(postDict: eachPostDict) {
+                newPosts.append(currNewPost)
+            }
+        }
+        return newPosts
+    }
+    
+    func createListOfTableNodeCellViewModels(from posts: [DySiPost]?) -> [PostTableNodeCellViewModel] {
+        var viewModels: [PostTableNodeCellViewModel] = []
+        guard let posts = posts else {
+            return viewModels
+        }
+
+        for post in posts {
+            viewModels.append(PostTableNodeCellViewModel(post: post))
+        }
+        return viewModels
+    }
     
     func getNumberOfRowsInSection(in section: Int) -> Int {
         return self.allPosts?.count ?? 0
     }
     
-    func getOnePost(for indexPath: IndexPath) -> DySiPost? {
-        return self.allPosts?[indexPath.row]
+    func getCellViewModel(for indexPath: IndexPath) -> PostTableNodeCellViewModelProtocol? {
+        return self.cellViewModels[indexPath.row]
     }
     
     func getPermalinkOfPost(for indexPath: IndexPath) -> URL {

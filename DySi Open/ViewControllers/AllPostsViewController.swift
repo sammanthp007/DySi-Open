@@ -12,9 +12,11 @@ import AsyncDisplayKit
 
 class AllPostsViewController: ASViewController<ASTableNode> {
     var activityIndicator: UIActivityIndicatorView!
-
-    var viewModel: AllPostTableViewModelProtocol!
     var tableNode: ASTableNode!
+
+    lazy var viewModel: AllPostTableViewModelProtocol = {
+        return AllPostsTableViewModel()
+    }()
 
     var screenSizeForWidth: CGSize = {
         let screenRect = UIScreen.main.bounds
@@ -23,17 +25,13 @@ class AllPostsViewController: ASViewController<ASTableNode> {
     }()
 
     init() {
-        self.viewModel = AllPostsTableViewModel()
-
         let tableNode = ASTableNode(style: .plain)
         super.init(node: tableNode)
         self.tableNode = tableNode
         self.tableNode.dataSource = self
         self.tableNode.delegate = self
-
-        self.navigationItem.title = Constants.UILabels.AllPostViewNavigationItemTitle
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -42,8 +40,7 @@ class AllPostsViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setupPullToRefresh()
-        setupActivityIndicator()
+        initView()
 
         DispatchQueue.main.async {
             self.activityIndicator.startAnimating()
@@ -60,6 +57,13 @@ class AllPostsViewController: ASViewController<ASTableNode> {
                 }
             }
         }
+    }
+
+    func initView() {
+        self.navigationItem.title = Constants.UILabels.AllPostViewNavigationItemTitle
+
+        setupPullToRefresh()
+        setupActivityIndicator()
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,7 +86,10 @@ extension AllPostsViewController: ASTableDataSource {
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let nodeBlock: ASCellNodeBlock = {
             // TODO: forced unwrapping here
-            return PostTableNodeCell(postModel: self.viewModel.getOnePost(for: indexPath)!)
+            if let cellViewModel = self.viewModel.getCellViewModel(for: indexPath) {
+                return PostTableNodeCell(postCellViewModel: cellViewModel)
+            }
+            return ASCellNode()
         }
         return nodeBlock
     }
