@@ -78,13 +78,12 @@ extension AllPostsViewController: ASTableDataSource {
         }
         return numberOfPosts
     }
-    
+
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let nodeBlock: ASCellNodeBlock = {
             // TODO: forced unwrapping here
             return PostTableNodeCell(postModel: self.viewModel.getOnePost(for: indexPath)!)
         }
-
         return nodeBlock
     }
 }

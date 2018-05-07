@@ -11,9 +11,15 @@ import AsyncDisplayKit
 import WebKit
 
 class PostInWebViewController: ASViewController<ASDisplayNode> {
-
     var webNode: ASDisplayNode!
     var currentURL: URL!
+    var progressView: UIProgressView!
+
+    var webView: WKWebView {
+        get {
+            return self.webNode.view as! WKWebView
+        }
+    }
 
     init(linkToOpen: URL) {
         self.currentURL = linkToOpen
@@ -26,17 +32,44 @@ class PostInWebViewController: ASViewController<ASDisplayNode> {
         super.init(node: node)
         self.webNode = node
     }
-    
+
+    //deinit
+    deinit {
+        //remove all observers
+        webView.removeObserver(self, forKeyPath: "estimatedProgress")
+        // remove progressView
+        progressView.removeFromSuperview()
+    }
+
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        guard let change = change else {
+            return
+        }
+
+        if keyPath == "estimatedProgress" {
+            if let progress = (change[NSKeyValueChangeKey.newKey] as AnyObject).floatValue {
+                print (progress)
+                progressView.progress = progress;
+            }
+            return
+        }
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.setupProgressView()
+        self.webView.navigationDelegate = self
+
+        // add observer
+        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         let myRequest = URLRequest(url: currentURL)
@@ -46,5 +79,27 @@ class PostInWebViewController: ASViewController<ASDisplayNode> {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setupProgressView() -> Void {
+        let progressView = UIProgressView(progressViewStyle: .default)
+        progressView.sizeToFit()
+        self.progressView = progressView
+
+        let bounds = self.node.frame
+        progressView.tintColor = UIColor.blue
+        let refreshRect = CGRect(x: 0, y: (bounds.size.height - progressView.frame.size.height), width: bounds.width, height: 2)
+        progressView.frame = refreshRect
+        self.node.view.addSubview(progressView)
+    }
+}
+
+extension PostInWebViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        progressView.isHidden = true
+    }
+
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        progressView.isHidden = false
     }
 }
