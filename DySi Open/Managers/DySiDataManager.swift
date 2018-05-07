@@ -16,15 +16,12 @@ protocol DySiDataManagerProtocol {
 
 class DySiDataManager: DySiDataManagerProtocol {
     func fetchAllPublicPosts(completion: @escaping (Error?, [[String : Any]]?) -> Void) {
-        print ("Make network call here")
-        
-        /* TODO: get the url from a different location, where all hardcoded urls are stored */
         guard let url = URL(string: Constants.ForDySiAPI.URLS.GetAllPosts) else {
             let newError = NSError(domain: "DySiDataManagerError", code: 100, userInfo: ["message": " Could not unwrap the url for getting all public posts"])
             completion(newError, nil)
             return
         }
-        
+
         Alamofire.request(url).responseJSON { (response) in
             if let rawPosts = response.result.value as? [String: Any], let posts = rawPosts["posts"] as? [[String: Any]]{
                 completion(nil, posts)
