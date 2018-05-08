@@ -8,12 +8,23 @@
 
 import Foundation
 
+/**
+ Determines if author info is to be displayed on device screen or not.
+ 
+ - hidden: Do not show
+ - author: Show the author name for author, if exists
+ - source: Probably to show the source name for author name, if exists
+ */
 enum PostBylineType: String {
     case hidden = "Hidden"
     case author = "Author"
     case source = "Source"
 }
 
+
+/**
+ Represents a single post
+ */
 class DySiPost {
     var author: DySiPostAuthor?
     var title: String?
@@ -21,33 +32,19 @@ class DySiPost {
     var createdDateString: String?
     var dictOfImageUrls: [String: Any]?
     var cleanPermaLinkString: String?
-    
-    private let dateFormatter = DateFormatter()
-    
+
     init?(postDict: [String: Any]) {
         // get all required properties
         guard let title = postDict["title"] as? String, let descriptionText = postDict["description"] as? String, let createdDateString = postDict["createdDate"] as? String, let cleanPermaLinkString = postDict["cleanPermaLink"] as? String, let postBylineTypeString = postDict["postBylineType"] as? String, var authorDict = postDict["author"] as? [String: Any] else {
-            // TODO: Handle this error in a safer way
-            print ("error parsing api data")
+            // TODO Improvement: Better logging
+            print ("Warning: error parsing api data")
             return
         }
 
-        // TODO: do this in a different function, get the first image
-        var imageUrlStringDict: [String: Any]? = [:]
-        var arrayOfImageStrings: [String] = []
+        // get image for the post, if exists
+        var imageUrlStringDict: [String: Any]?
         if let media = postDict["media"] as? [[String: Any]]  {
-            for mediaContent in media {
-                if let urlString = mediaContent["url"] as? String, let role = mediaContent["role"] as? String, role.lowercased().contains("image") {
-                    if let currUrlString = self.getParsableUrlString(urlString: urlString) {
-                        if role == Constants.ForDySiAPI.RoleOfCoverImage {
-                            imageUrlStringDict?["original"] = currUrlString
-                        } else {
-                            arrayOfImageStrings.append(currUrlString)
-                        }
-                    }
-                }
-            }
-            imageUrlStringDict?["nonoriginals"] = arrayOfImageStrings
+            imageUrlStringDict = getDictOfImagesFromMedia(media: media)
         }
 
         // get info if author information should be shown in byline
@@ -55,14 +52,17 @@ class DySiPost {
 
         self.author = DySiPostAuthor(authorDict: authorDict)
         self.title = title
-        if !descriptionText.isEmpty {
-            self.descriptionText = descriptionText
-        }
+        self.descriptionText = !descriptionText.isEmpty ? descriptionText : nil
         self.createdDateString = createdDateString
         self.dictOfImageUrls = imageUrlStringDict
         self.cleanPermaLinkString = cleanPermaLinkString
     }
-    
+
+    /**
+     Returns the same string if it can be turned into a Url, else encodes the string to make it turnable to Url
+     - Parameter urlString: The string to turn into a string that can turn into Url
+     - Returns: A string that can turn into Url
+     */
     private func getParsableUrlString(urlString: String) -> String? {
         if URL(string: urlString) != nil {
             return urlString
@@ -72,54 +72,27 @@ class DySiPost {
         return nil
     }
 
-    func getDisplayableAuthorName() -> String? {
-        return self.author?.getAuthorDisplayName()
-    }
-    
-    func getProfileImageUrlStringOfAuthor() -> String? {
-        return self.author?.getProfileImageUrlString()
-    }
-    
-    func getDescriptionText() -> String? {
-        return self.descriptionText
-    }
-    
-    func getDisplayableTitle() -> String? {
-        return self.title
-    }
-    
-    func getDisplayableDateString() -> String? {
-        if let dateString = self.createdDateString {
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSX"
-            let date = dateFormatter.date(from: dateString)
-            
-            guard let createdDate = date else {
-                return nil
-            }
-            dateFormatter.dateStyle = .long
-            return dateFormatter.string(from: createdDate)
-        }
-        return nil
-    }
-    
-    func getCoverImageURLString() -> String? {
-        if let imageUrlStringDict = self.dictOfImageUrls {
-            if let originalImageUrlString = imageUrlStringDict["original"] as? String {
-                return originalImageUrlString
-            } else if let arrayOfNonOriginalImageUrlString = imageUrlStringDict["nonoriginals"] as? [String], arrayOfNonOriginalImageUrlString.count > 0 {
-                return arrayOfNonOriginalImageUrlString[0]
-            } else {
-                return nil
+    /**
+     Gets all the images inside the media dictionary
+     - Parameter media: A dictionary that contains array of dictionaries with
+     attributes "role" and "url"
+     - Returns: A dictionary of images with two keys "original":`String` and "nonoriginals": `[String]`
+     */
+    private func getDictOfImagesFromMedia(media: [[String: Any]]) -> [String: Any]? {
+        var imageUrlStringDict: [String: Any]? = [:]
+        var arrayOfImageStrings: [String] = []
+        for mediaContent in media {
+            if let urlString = mediaContent["url"] as? String, let role = mediaContent["role"] as? String, role.lowercased().contains("image") {
+                if let currUrlString = self.getParsableUrlString(urlString: urlString) {
+                    if role == Constants.ForDySiAPI.RoleOfCoverImage {
+                        imageUrlStringDict?["original"] = currUrlString
+                    } else {
+                        arrayOfImageStrings.append(currUrlString)
+                    }
+                }
             }
         }
-        return nil
-    }
-    
-    func getPermaLinkUrlString() -> String {
-        return self.cleanPermaLinkString ?? Constants.UserFacingErrors.ForPostModel.PermaLinkNotAvailable
-    }
-    
-    func getSourceSiteString() -> String? {
-        return self.author?.getPostSourceSiteString()
+        imageUrlStringDict?["nonoriginals"] = arrayOfImageStrings
+        return imageUrlStringDict
     }
 }

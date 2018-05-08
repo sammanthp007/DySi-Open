@@ -33,14 +33,12 @@ class PostInWebViewController: ASViewController<ASDisplayNode> {
         self.webNode = node
     }
 
-    //deinit
     deinit {
-        //remove all observers
         webView.removeObserver(self, forKeyPath: "estimatedProgress")
-        // remove progressView
         progressView.removeFromSuperview()
     }
 
+    /// Updates the progress bar on changes to estimated progress
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let change = change else {
             return
@@ -48,7 +46,6 @@ class PostInWebViewController: ASViewController<ASDisplayNode> {
 
         if keyPath == "estimatedProgress" {
             if let progress = (change[NSKeyValueChangeKey.newKey] as AnyObject).floatValue {
-                print (progress)
                 progressView.progress = progress;
             }
             return
@@ -72,6 +69,8 @@ class PostInWebViewController: ASViewController<ASDisplayNode> {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+
+        // load the web page
         let myRequest = URLRequest(url: currentURL)
         (self.webNode.view as! WKWebView).load(myRequest)
     }
@@ -80,7 +79,8 @@ class PostInWebViewController: ASViewController<ASDisplayNode> {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    /// Adds progress bar to the bottom of the screen
     func setupProgressView() -> Void {
         let progressView = UIProgressView(progressViewStyle: .default)
         progressView.sizeToFit()

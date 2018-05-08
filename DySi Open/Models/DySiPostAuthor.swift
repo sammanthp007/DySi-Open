@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Represents an author of a post
+ */
 class DySiPostAuthor {
     var author: String? // The stored text to display as the author. Notes: Use when the post's postBylineType is "Author".
     var profileImageUrlString: String? // The author's profile picture on the social network
@@ -16,7 +19,7 @@ class DySiPostAuthor {
     var profileUrlString: String? // The author's profile URL on the social network
     var postSourceName: String? // The name of the source of the post.
     var postSourceSiteString: String? // The website in which the post originated
-    var postBylineType: PostBylineType
+    var postBylineType: PostBylineType // Hint to show the author info in display or not
     
     init?(authorDict: [String: Any]) {
         self.author = authorDict["author"] as? String
@@ -32,28 +35,5 @@ class DySiPostAuthor {
         } else {
             self.postBylineType = .source
         }
-    }
-    
-    func getAuthorDisplayName() -> String? {
-        return self.author
-    }
-    
-    func getSourceName() -> String? {
-        return self.postSourceName
-    }
-    
-    func getProfileImageUrlString() -> String? {
-        return self.profileImageUrlString
-    }
-    
-    func getPostSourceSiteString() -> String? {
-        return self.postSourceSiteString ?? nil
-    }
-    
-    func hasAuthor() -> Bool {
-        if self.getAuthorDisplayName() != nil && self.postBylineType == .author {
-            return true
-        }
-        return false
     }
 }

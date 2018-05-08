@@ -9,6 +9,13 @@
 import UIKit
 
 extension UIImage {
+    /**
+     Makes the image that calls it and its content circular in shape
+     - Parameter size: How big to make the circle
+     - Parameter width: The line width of the path
+     - Returns: A circular UIImage
+     */
+ 
     func makeCircularImage(size: CGSize, borderWidth width: CGFloat) -> UIImage {
         // make a CGRect with the image's size
         let circleRect = CGRect(origin: .zero, size: size)
