@@ -39,7 +39,7 @@ DySi Open uses Dynamic Signals open apis.
 - [x] Utils/ErrorHandler
 - [x] Models/DySiPost
 - [x] Models/DySiPostAuthor
-- [ ] ViewControllers/ViewModels/AllPostsTableViewModel
+- [x] ViewControllers/ViewModels/AllPostsTableViewModel
 - [x] ViewControllers/ViewModels/PostTableNodeCellViewModel
 - [ ] Managers/DySiDataManager
 
