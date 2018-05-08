@@ -16,8 +16,11 @@ protocol AllPostTableViewModelProtocol {
     var reloadTableNodeClosure: (()->())? { get set }
 }
 
+/**
+ ViewModel to link DySiPost with AllPostsViewController
+ */
 class AllPostsTableViewModel {
-    // owns the dataManager to get data over network
+    /// Owned dataManager to get data over network
     var dysiDataManager: DySiDataManagerProtocol!
 
     // Holds data received from api call
@@ -37,16 +40,25 @@ class AllPostsTableViewModel {
 }
 
 extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
-    func fetchAllPosts(completion: @escaping (Error?) -> Void) {
+    /**
+     Get data from over the network and convert them to Posts and cellViewModels
+     - Parameter completion: Callback to call upon completion of network call.
+     - Parameter error: Any error upon completion of network call. Make it `nil` to
+     indicate success
+     */
+    func fetchAllPosts(completion: @escaping (_ error: Error?) -> Void) {
         self.dysiDataManager.fetchAllPublicPosts { [weak self] (error, rawDict) in
             if let error = error {
                 return completion(error)
             } else if let rawPostsDict = rawDict {
+
                 // convert dictionary to Post objects
                 self?.allPosts = self?.createListOfPosts(from: rawPostsDict)
+
                 // create an array of tableNodeViewModels from Posts
                 self?.cellViewModels = self?.createListOfTableNodeCellViewModels(from: self?.allPosts) ?? []
                 return completion(nil)
+
             } else {
                 let newError = NSError(domain: "DySiAllPostViewModelError", code: 100, userInfo: ["message": "DySiDataManager gave neither error nor rawDict"])
                 return completion(newError)
@@ -54,14 +66,30 @@ extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
         }
     }
 
+    /**
+     Gets the number of rows. Used to provide data to UITableViewDataSource methods
+     - Parameter section: The section of a UITableView
+     - Returns: Number of cells to show in a section
+     */
     func getNumberOfRowsInSection(in section: Int) -> Int {
         return self.allPosts?.count ?? 0
     }
 
+    /**
+     Gets the CellViewModel to display in UITableView.
+     Used to provide data to UITableViewDataSource methods.
+     - Parameter indexPath: The indexpath of a UITableView
+     - Returns: The data to show in a UITableViewCell
+     */
     func getCellViewModel(for indexPath: IndexPath) -> PostTableNodeCellViewModelProtocol? {
         return self.cellViewModels[indexPath.row]
     }
 
+    /**
+     Gets the permalink of a post.
+     - Parameter indexPath: The indexpath of a UITableView
+     - Returns: A link to open
+     */
     func getPermalinkOfPost(for indexPath: IndexPath) -> URL {
         if let urlString = self.allPosts?[indexPath.row].cleanPermaLinkString, let url = URL(string: urlString) {
             return url
@@ -72,6 +100,13 @@ extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
 
 // private methods
 extension AllPostsTableViewModel {
+    /**
+     Iterates through an array or dictionary and
+     initializes DySiPost objects from each dictionary to return
+     an array of DySiPosts
+     - Parameter posts: Dictionary to use to initialize DySiPost
+     - Returns: An array of DySiPost
+     */
     private func createListOfPosts(from posts: [[String : Any]]) -> [DySiPost] {
         var newPosts: [DySiPost] = []
         for eachPostDict in posts {
@@ -82,6 +117,13 @@ extension AllPostsTableViewModel {
         return newPosts
     }
 
+    /**
+     Iterates through an array or DySiPost and
+     initializes PostTableNodeCellViewModel objects from each DySiPost
+     to return an array of PostTableNodeCellViewModel
+     - Parameter posts: An array of DySiPost
+     - Returns: An array of PostTableNodeCellViewModel
+     */
     private func createListOfTableNodeCellViewModels(from posts: [DySiPost]?) -> [PostTableNodeCellViewModel] {
         var viewModels: [PostTableNodeCellViewModel] = []
         guard let posts = posts else {
