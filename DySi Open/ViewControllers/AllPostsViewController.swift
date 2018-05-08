@@ -21,7 +21,7 @@ class AllPostsViewController: ASViewController<ASTableNode> {
 
     /// Link between the model and View for this VC
     lazy var viewModel: AllPostTableViewModelProtocol = {
-        return AllPostsTableViewModel()
+        return AllPostsTableViewModel(dataManager: DySiDataManager())
     }()
 
     var screenSizeForWidth: CGSize = {
