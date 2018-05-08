@@ -23,7 +23,7 @@ enum PostBylineType: String {
 
 
 /**
- Represents a single post
+ Represents a single postP
  */
 class DySiPost {
     var author: DySiPostAuthor?
