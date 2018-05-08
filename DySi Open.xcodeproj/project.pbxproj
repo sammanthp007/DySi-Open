@@ -27,6 +27,7 @@
 		BBAC8FD120A104A100657561 /* UIOfTableNodeCellComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FD020A104A100657561 /* UIOfTableNodeCellComponents.swift */; };
 		BBAC8FD920A1446D00657561 /* DySiOpenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FD820A1446D00657561 /* DySiOpenTests.swift */; };
 		BBAC8FE120A1469300657561 /* DySiPostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FE020A1469300657561 /* DySiPostTests.swift */; };
+		BBAC8FE320A1710400657561 /* ErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FE220A1710400657561 /* ErrorHandlerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		BBAC8FD820A1446D00657561 /* DySiOpenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DySiOpenTests.swift; sourceTree = "<group>"; };
 		BBAC8FDA20A1446D00657561 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBAC8FE020A1469300657561 /* DySiPostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DySiPostTests.swift; sourceTree = "<group>"; };
+		BBAC8FE220A1710400657561 /* ErrorHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlerTests.swift; sourceTree = "<group>"; };
 		ECB8EC86F433885CE1F38424 /* Pods-DySi Open.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DySi Open.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DySi Open/Pods-DySi Open.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,6 +218,7 @@
 		BBAC8FD720A1446D00657561 /* DySiOpenTests */ = {
 			isa = PBXGroup;
 			children = (
+				BBAC8FE220A1710400657561 /* ErrorHandlerTests.swift */,
 				BBAC8FE020A1469300657561 /* DySiPostTests.swift */,
 				BBAC8FD820A1446D00657561 /* DySiOpenTests.swift */,
 				BBAC8FDA20A1446D00657561 /* Info.plist */,
@@ -412,6 +415,7 @@
 			files = (
 				BBAC8FE120A1469300657561 /* DySiPostTests.swift in Sources */,
 				BBAC8FD920A1446D00657561 /* DySiOpenTests.swift in Sources */,
+				BBAC8FE320A1710400657561 /* ErrorHandlerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
