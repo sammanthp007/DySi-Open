@@ -1,5 +1,7 @@
 # DySi Open
-DySi Open uses Dynamic Signals open apis.
+**DySi Open** uses Dynamic Signals open api to load posts.
+
+Time Spent: Friday May 4 to Tuesday May 8
 
 ## Tasks
 - [x] Create a new empty project in Xcode.
@@ -39,12 +41,11 @@ DySi Open uses Dynamic Signals open apis.
 - [x] Utils/ErrorHandler
 - [x] Models/DySiPost
 - [x] Models/DySiPostAuthor
-- [ ] ViewControllers/ViewModels/AllPostsTableViewModel
+- [x] ViewControllers/ViewModels/AllPostsTableViewModel
 - [x] ViewControllers/ViewModels/PostTableNodeCellViewModel
-- [ ] Managers/DySiDataManager
 
-## Things I would like to have but am unable to for the timebeing due to time
-## constraint
+## Things I would like to have but am unable to for now due to time constraint
+- [ ] Testing for Managers/DySiDataManager
 - [ ] Higher test coverage
 - [ ] UI testing
 
