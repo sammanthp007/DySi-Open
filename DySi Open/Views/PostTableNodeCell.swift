@@ -9,7 +9,6 @@
 import Foundation
 import AsyncDisplayKit
 
-
 class PostTableNodeCell: ASCellNode {
     /// Image of a black line extending the width of the screen used for separating two cells
     let bottomSeparator = ASImageNode()

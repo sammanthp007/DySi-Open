@@ -86,7 +86,7 @@ class PostTableNodeCellViewModel: PostTableNodeCellViewModelProtocol {
 
     /// String representing the permalink to open for post
     var permaLinkUrlString: String {
-        return self.post.cleanPermaLinkString ?? Constants.UserFacingErrors.ForPostModel.PermaLinkNotAvailable
+        return self.post.cleanPermaLinkString ?? Constants.SubstitutionTextsInModels.ForPostModel.PermaLinkNotAvailable
     }
 
     /// Source of post

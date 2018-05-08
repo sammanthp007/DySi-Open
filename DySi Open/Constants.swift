@@ -30,7 +30,7 @@ struct Constants {
         static let RoleOfCoverImage: String = "image,original"
     }
 
-    struct UserFacingErrors {
+    struct SubstitutionTextsInModels {
         struct ForPostModel {
             static let NotAvailable: String = "Post not Available"
             static let PermaLinkNotAvailable: String = "Link not available"
