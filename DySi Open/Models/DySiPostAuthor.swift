@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Represents an author of a post
+ */
 class DySiPostAuthor {
     var author: String? // The stored text to display as the author. Notes: Use when the post's postBylineType is "Author".
     var profileImageUrlString: String? // The author's profile picture on the social network
