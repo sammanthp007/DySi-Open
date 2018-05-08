@@ -23,7 +23,7 @@ enum PostBylineType: String {
 
 
 /**
- Represents a single postP
+ Represents a single DySiPost
  */
 class DySiPost {
     var author: DySiPostAuthor?
@@ -33,12 +33,24 @@ class DySiPost {
     var dictOfImageUrls: [String: Any]?
     var cleanPermaLinkString: String?
 
+    /**
+     Initializes a DySiPost
+     - Parameter postDict: A dictionary containing properties for the DySiPost
+     `postDict` must contain
+        - title: `String` representing the title of the post
+        - description: `String` representing the description of the post
+        - createdDate: `String` representing the date in yyyy-MM-dd'T'HH:mm:ss.SSSSX format
+        - cleanPermaLink: `String` representing the permalink of the post
+        - postBylineType: `String` representing the hint of how author should be displayed
+     choose from `hidden`, `author`, and `source`
+        - "author": `[String: Any]` representing the author and source of the post
+     */
     init?(postDict: [String: Any]) {
         // get all required properties
-        guard let title = postDict["title"] as? String, let descriptionText = postDict["description"] as? String, let createdDateString = postDict["createdDate"] as? String, let cleanPermaLinkString = postDict["cleanPermaLink"] as? String, let postBylineTypeString = postDict["postBylineType"] as? String, var authorDict = postDict["author"] as? [String: Any] else {
-            // TODO Improvement: Better logging
+        guard let title = postDict["title"] as? String, let cleanPermaLinkString = postDict["cleanPermaLink"] as? String, var authorDict = postDict["author"] as? [String: Any] else {
+            // TODO Improvement: Better logging tool than print
             print ("Warning: error parsing api data")
-            return
+            return nil
         }
 
         // get image for the post, if exists
@@ -48,12 +60,18 @@ class DySiPost {
         }
 
         // get info if author information should be shown in byline
-        authorDict["postBylineType"] = postBylineTypeString
+        if let postBylineTypeString = postDict["postBylineType"] as? String {
+            authorDict["postBylineType"] = postBylineTypeString
+        }
 
         self.author = DySiPostAuthor(authorDict: authorDict)
         self.title = title
-        self.descriptionText = !descriptionText.isEmpty ? descriptionText : nil
-        self.createdDateString = createdDateString
+        if let descriptionText = postDict["description"] as? String {
+            self.descriptionText = !descriptionText.isEmpty ? descriptionText : nil
+        }
+        if let createdDateString = postDict["createdDate"] as? String {
+            self.createdDateString = createdDateString
+        }
         self.dictOfImageUrls = imageUrlStringDict
         self.cleanPermaLinkString = cleanPermaLinkString
     }
