@@ -35,6 +35,22 @@ DySi Open uses Dynamic Signals open apis.
   so users can view resources from links that use `HTTP` (since there were
   images that used `http`)
 
+## Unit testing done for
+- [x] Utils/ErrorHandler
+- [x] Models/DySiPost
+- [x] Models/DySiPostAuthor
+- [ ] ViewControllers/ViewModels/AllPostsTableViewModel
+- [ ] ViewControllers/ViewModels/PostTableNodeCellViewModel
+- [ ] ViewControllers/AllPostsViewController
+- [ ] ViewControllers/PostInWebViewController
+- [ ] Views/PostTableNodeCell
+- [ ] Views/Utils/UIOfTableNodeCellComponents
+
+## Things I would like to have but am unable to for the timebeing due to time
+## constraint
+- [ ] Higher test coverage
+- [ ] UI testing
+
 > Feel free to surprise us with anything cool you can do to this project.
 
 Here’s how are we going to assess the project:-

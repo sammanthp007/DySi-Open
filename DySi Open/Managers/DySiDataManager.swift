@@ -24,6 +24,11 @@ class DySiDataManager: DySiDataManagerProtocol {
             completion(newError, nil)
             return
         }
+        
+        if !NetworkReachabilityManager()!.isReachable {
+            let newError = NSError(domain: "DySiDataManagerError", code: 404, userInfo: ["message": "Could not find any data over network"])
+            completion(newError, nil)
+        }
 
         Alamofire.request(url).responseJSON { (response) in
             if let rawPosts = response.result.value as? [String: Any], let posts = rawPosts["posts"] as? [[String: Any]]{
