@@ -21,7 +21,7 @@ protocol AllPostTableViewModelProtocol {
  */
 class AllPostsTableViewModel {
     /// Owned dataManager to get data over network
-    var dysiDataManager: DySiDataManagerProtocol!
+    private var dysiDataManager: DySiDataManagerProtocol!
 
     // Holds data received from api call
     private var allPosts: [DySiPost]?
@@ -32,8 +32,8 @@ class AllPostsTableViewModel {
         }
     }
 
-    init() {
-        self.dysiDataManager = DySiDataManager()
+    init(dataManager: DySiDataManager) {
+        self.dysiDataManager = dataManager
     }
 
     var reloadTableNodeClosure: (()->())?
