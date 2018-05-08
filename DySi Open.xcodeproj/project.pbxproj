@@ -28,6 +28,7 @@
 		BBAC8FD920A1446D00657561 /* DySiOpenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FD820A1446D00657561 /* DySiOpenTests.swift */; };
 		BBAC8FE120A1469300657561 /* DySiPostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FE020A1469300657561 /* DySiPostTests.swift */; };
 		BBAC8FE320A1710400657561 /* ErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FE220A1710400657561 /* ErrorHandlerTests.swift */; };
+		BBAC8FE520A1810C00657561 /* PostTableNodeCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FE420A1810C00657561 /* PostTableNodeCellViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		BBAC8FDA20A1446D00657561 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBAC8FE020A1469300657561 /* DySiPostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DySiPostTests.swift; sourceTree = "<group>"; };
 		BBAC8FE220A1710400657561 /* ErrorHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlerTests.swift; sourceTree = "<group>"; };
+		BBAC8FE420A1810C00657561 /* PostTableNodeCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableNodeCellViewModelTests.swift; sourceTree = "<group>"; };
 		ECB8EC86F433885CE1F38424 /* Pods-DySi Open.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DySi Open.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DySi Open/Pods-DySi Open.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,6 +220,7 @@
 		BBAC8FD720A1446D00657561 /* DySiOpenTests */ = {
 			isa = PBXGroup;
 			children = (
+				BBAC8FE420A1810C00657561 /* PostTableNodeCellViewModelTests.swift */,
 				BBAC8FE220A1710400657561 /* ErrorHandlerTests.swift */,
 				BBAC8FE020A1469300657561 /* DySiPostTests.swift */,
 				BBAC8FD820A1446D00657561 /* DySiOpenTests.swift */,
@@ -416,6 +419,7 @@
 				BBAC8FE120A1469300657561 /* DySiPostTests.swift in Sources */,
 				BBAC8FD920A1446D00657561 /* DySiOpenTests.swift in Sources */,
 				BBAC8FE320A1710400657561 /* ErrorHandlerTests.swift in Sources */,
+				BBAC8FE520A1810C00657561 /* PostTableNodeCellViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

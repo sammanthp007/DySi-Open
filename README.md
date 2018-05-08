@@ -40,11 +40,8 @@ DySi Open uses Dynamic Signals open apis.
 - [x] Models/DySiPost
 - [x] Models/DySiPostAuthor
 - [ ] ViewControllers/ViewModels/AllPostsTableViewModel
-- [ ] ViewControllers/ViewModels/PostTableNodeCellViewModel
-- [ ] ViewControllers/AllPostsViewController
-- [ ] ViewControllers/PostInWebViewController
-- [ ] Views/PostTableNodeCell
-- [ ] Views/Utils/UIOfTableNodeCellComponents
+- [x] ViewControllers/ViewModels/PostTableNodeCellViewModel
+- [ ] Managers/DySiDataManager
 
 ## Things I would like to have but am unable to for the timebeing due to time
 ## constraint

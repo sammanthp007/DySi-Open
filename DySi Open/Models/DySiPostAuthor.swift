@@ -33,7 +33,7 @@ class DySiPostAuthor {
         if let postBylineTypeString = authorDict["postBylineType"] as? String {
             self.postBylineType = PostBylineType(rawValue: postBylineTypeString)!
         } else {
-            self.postBylineType = .source
+            self.postBylineType = .hidden
         }
     }
 }
