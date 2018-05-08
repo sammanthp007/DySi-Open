@@ -19,7 +19,7 @@ extension UIViewController {
      - Parameter actionStyle: Additional styling information to apply to the button
      - Parameter afterHittingAction: The callback closure to run upon user taps "Ok" button
      */
-    func displayMessageToUserUsingAlert(title: String, message: String, style: UIAlertControllerStyle = UIAlertControllerStyle.alert, completion: (() -> Void)?, okButtonText: String, actionStyle: UIAlertActionStyle = UIAlertActionStyle.default, afterHittingAction: ((UIAlertAction) -> Void)?) -> Void {
+    @objc func displayMessageToUserUsingAlert(title: String, message: String, style: UIAlertControllerStyle = UIAlertControllerStyle.alert, completion: (() -> Void)?, okButtonText: String, actionStyle: UIAlertActionStyle = UIAlertActionStyle.default, afterHittingAction: ((UIAlertAction) -> Void)?) -> Void {
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
         let action = UIAlertAction(title: okButtonText, style: actionStyle, handler: afterHittingAction)
         alert.addAction(action)
