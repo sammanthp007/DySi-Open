@@ -32,7 +32,7 @@ class AllPostsTableViewModel {
         }
     }
 
-    init(dataManager: DySiDataManager) {
+    init(dataManager: DySiDataManagerProtocol) {
         self.dysiDataManager = dataManager
     }
 
@@ -82,7 +82,10 @@ extension AllPostsTableViewModel: AllPostTableViewModelProtocol {
      - Returns: The data to show in a UITableViewCell
      */
     func getCellViewModel(for indexPath: IndexPath) -> PostTableNodeCellViewModelProtocol? {
-        return self.cellViewModels[indexPath.row]
+        if self.cellViewModels.count > 0 {
+            return self.cellViewModels[indexPath.row]
+        }
+        return nil
     }
 
     /**

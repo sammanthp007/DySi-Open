@@ -25,7 +25,6 @@
 		BBAC8FBE20A0393800657561 /* ASTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FBD20A0393800657561 /* ASTableNode.swift */; };
 		BBAC8FCE20A0EEC800657561 /* PostTableNodeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FCD20A0EEC800657561 /* PostTableNodeCellViewModel.swift */; };
 		BBAC8FD120A104A100657561 /* UIOfTableNodeCellComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FD020A104A100657561 /* UIOfTableNodeCellComponents.swift */; };
-		BBAC8FD920A1446D00657561 /* DySiOpenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FD820A1446D00657561 /* DySiOpenTests.swift */; };
 		BBAC8FE120A1469300657561 /* DySiPostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FE020A1469300657561 /* DySiPostTests.swift */; };
 		BBAC8FE320A1710400657561 /* ErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FE220A1710400657561 /* ErrorHandlerTests.swift */; };
 		BBAC8FE520A1810C00657561 /* PostTableNodeCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FE420A1810C00657561 /* PostTableNodeCellViewModelTests.swift */; };
@@ -65,7 +64,6 @@
 		BBAC8FCD20A0EEC800657561 /* PostTableNodeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableNodeCellViewModel.swift; sourceTree = "<group>"; };
 		BBAC8FD020A104A100657561 /* UIOfTableNodeCellComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOfTableNodeCellComponents.swift; sourceTree = "<group>"; };
 		BBAC8FD620A1446D00657561 /* DySiOpenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DySiOpenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BBAC8FD820A1446D00657561 /* DySiOpenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DySiOpenTests.swift; sourceTree = "<group>"; };
 		BBAC8FDA20A1446D00657561 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBAC8FE020A1469300657561 /* DySiPostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DySiPostTests.swift; sourceTree = "<group>"; };
 		BBAC8FE220A1710400657561 /* ErrorHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlerTests.swift; sourceTree = "<group>"; };
@@ -226,7 +224,6 @@
 				BBAC8FE420A1810C00657561 /* PostTableNodeCellViewModelTests.swift */,
 				BBAC8FE220A1710400657561 /* ErrorHandlerTests.swift */,
 				BBAC8FE020A1469300657561 /* DySiPostTests.swift */,
-				BBAC8FD820A1446D00657561 /* DySiOpenTests.swift */,
 				BBAC8FDA20A1446D00657561 /* Info.plist */,
 			);
 			path = DySiOpenTests;
@@ -421,7 +418,6 @@
 			files = (
 				BBAC8FE120A1469300657561 /* DySiPostTests.swift in Sources */,
 				BBAC8FE720A193A900657561 /* AllPostsTableViewModelTests.swift in Sources */,
-				BBAC8FD920A1446D00657561 /* DySiOpenTests.swift in Sources */,
 				BBAC8FE320A1710400657561 /* ErrorHandlerTests.swift in Sources */,
 				BBAC8FE520A1810C00657561 /* PostTableNodeCellViewModelTests.swift in Sources */,
 			);
