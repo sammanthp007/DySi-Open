@@ -10,10 +10,16 @@ import UIKit
 
 import AsyncDisplayKit
 
+/**
+ View controller housing a table view of posts
+ */
 class AllPostsViewController: ASViewController<ASTableNode> {
+    /// To indicate to users that expensive work being done in background
     var activityIndicator: UIActivityIndicatorView!
+    /// The table view being displayed on screen
     var tableNode: ASTableNode!
 
+    /// Link between the model and View for this VC
     lazy var viewModel: AllPostTableViewModelProtocol = {
         return AllPostsTableViewModel()
     }()
@@ -56,21 +62,6 @@ class AllPostsViewController: ASViewController<ASTableNode> {
         }
     }
 
-    func initViewModel() {
-        viewModel.reloadTableNodeClosure = { [weak self] () in
-            DispatchQueue.main.async {
-                self?.tableNode.reloadData()
-            }
-        }
-    }
-
-    func initView() {
-        self.navigationItem.title = Constants.UILabels.AllPostViewNavigationItemTitle
-
-        setupPullToRefresh()
-        setupActivityIndicator()
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -80,6 +71,7 @@ class AllPostsViewController: ASViewController<ASTableNode> {
 extension AllPostsViewController: ASTableDataSource {
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         let numberOfPosts = self.viewModel.getNumberOfRowsInSection(in: section)
+        // show empty message on tableView, if empty
         if numberOfPosts == 0 {
             self.tableNode.setEmptyMessage()
         } else {
@@ -101,15 +93,35 @@ extension AllPostsViewController: ASTableDataSource {
 
 extension AllPostsViewController: ASTableDelegate {
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
-        print ("opening in web view: ", self.viewModel.getPermalinkOfPost(for: indexPath))
         let viewController = PostInWebViewController(linkToOpen: self.viewModel.getPermalinkOfPost(for: indexPath))
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
 extension AllPostsViewController {
-    // helper functions
-    func fetchAllPosts(completion: @escaping (_ error: Error?) -> Void) {
+    /// Allows ViewModel the logic to reload table
+    private func initViewModel() {
+        viewModel.reloadTableNodeClosure = { [weak self] () in
+            DispatchQueue.main.async {
+                self?.tableNode.reloadData()
+            }
+        }
+    }
+
+    /// Initializes components to display on view
+    private func initView() {
+        self.navigationItem.title = Constants.UILabels.AllPostViewNavigationItemTitle
+
+        setupPullToRefresh()
+        setupActivityIndicator()
+    }
+
+    /**
+     Gets all posts
+     - Parameter completion: Callback upon completion of network call
+     - Parameter error: Any error during network call
+     */
+    private func fetchAllPosts(completion: @escaping (_ error: Error?) -> Void) {
         self.viewModel.fetchAllPosts { (error) in
             if let error = error {
                 return completion(error)
@@ -119,15 +131,15 @@ extension AllPostsViewController {
         }
     }
 
-    func setupPullToRefresh() -> Void {
-        // set up pull to refresh
+    /// Adds refresh control to top of table view
+    private func setupPullToRefresh() -> Void {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
-        // add refresh control to table view
         (tableNode.view as UITableView).insertSubview(refreshControl, at: 0)
     }
 
-    func setupActivityIndicator() {
+    /// Creates activity indicator and place it at the center of the view being loaded
+    private func setupActivityIndicator() {
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         self.activityIndicator = activityIndicator
         let bounds = self.node.frame
@@ -137,10 +149,11 @@ extension AllPostsViewController {
         self.node.view.addSubview(activityIndicator)
     }
 
+    /// Adds pull to refresh control
     @objc func refreshControlAction(_ refreshControl: UIRefreshControl) {
-        self.fetchAllPosts { (error) in
+        self.fetchAllPosts { [weak self] (error) in
             if let error = error {
-                ErrorHandler.displayErrorOnDeviceScreen(viewController: self, error: error) { _ in
+                ErrorHandler.displayErrorOnDeviceScreen(viewController: self!, error: error) { _ in
                     // Tell the refreshControl to stop spinning
                     refreshControl.endRefreshing()
                 }

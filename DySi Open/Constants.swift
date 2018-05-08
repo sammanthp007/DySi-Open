@@ -9,9 +9,19 @@
 import UIKit
 
 struct Constants {
+    /// For system strings being shown in the app
     struct UILabels {
         static let AllPostViewNavigationItemTitle: String = "DySi Open"
     }
+
+    /// For UI of the navigation bar
+    struct ForUINavigationBar {
+        static let BarTintColor = UIColor(red: 0/255.0, green: 94/255.0, blue: 253/255.0, alpha: 1.0)
+        static let TintColor = UIColor.white
+        static let TitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+    }
+
+    /// Strings relating to making API call and using specific data from the response
     struct ForDySiAPI {
         struct URLS {
             static let GetAllPosts: String = "https://www.dysiopen.com/v1/posts/public"
@@ -23,19 +33,11 @@ struct Constants {
     struct UserFacingErrors {
         struct ForPostModel {
             static let NotAvailable: String = "Post not Available"
-            static let AuthorNotAvailable: String = "Author not available"
-            static let TitleNotAvailable: String = "Title not available"
-            static let DescriptionNotAvailable: String = "Description not available"
-            static let CreatedDateNotAvailable: String = "Unknown post date"
-            static let ImageLinkNotAvailable: String = "Image not available"
             static let PermaLinkNotAvailable: String = "Link not available"
-        }
-
-        struct ForPostAuthorModel {
-            static let NameNotAvailable: String = "Author's name not available"
         }
     }
 
+    /// For converting custom app error to displayable error message
     struct CustomErrors {
         struct Fallback {
             static let title: String = "Oops"
@@ -53,6 +55,7 @@ struct Constants {
         ]
     }
 
+    /// For determining the cell layout
     struct CellLayout {
         static let TitleFontSize: CGFloat = 18
         static let BodyFontSize: CGFloat = 16

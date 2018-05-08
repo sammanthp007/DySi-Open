@@ -10,7 +10,15 @@ import UIKit
 
 let ErrorHandler = _ErrorHandler()
 
+/// A utility function to handle error based on error domain and error code
 class _ErrorHandler {
+    /**
+     Displays user friendly error on device screen based on error domain and error code.
+     If the error domain or code cannot be found, the display on device will fall to fallback values.
+     - Parameter viewController: The UIViewController the alert view will be on
+     - Parameter error: Error that gets translated to user friendly message
+     - Parameter completion: The callback closure to call after user taps "Ok"
+     */
     func displayErrorOnDeviceScreen(viewController: UIViewController, error: Error?, completion: ((UIAlertAction) -> Void)? = nil) -> Void {
         var displayableErrorTitle: String = Constants.CustomErrors.Fallback.title
         var displayableErrorMessage: String = Constants.CustomErrors.Fallback.message

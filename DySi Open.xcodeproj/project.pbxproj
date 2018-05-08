@@ -25,6 +25,7 @@
 		BBAC8FBC20A0340F00657561 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FBB20A0340F00657561 /* ErrorHandler.swift */; };
 		BBAC8FBE20A0393800657561 /* ASTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FBD20A0393800657561 /* ASTableNode.swift */; };
 		BBAC8FCE20A0EEC800657561 /* PostTableNodeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FCD20A0EEC800657561 /* PostTableNodeCellViewModel.swift */; };
+		BBAC8FD120A104A100657561 /* UIOfTableNodeCellComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FD020A104A100657561 /* UIOfTableNodeCellComponents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		BBAC8FBB20A0340F00657561 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		BBAC8FBD20A0393800657561 /* ASTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASTableNode.swift; sourceTree = "<group>"; };
 		BBAC8FCD20A0EEC800657561 /* PostTableNodeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableNodeCellViewModel.swift; sourceTree = "<group>"; };
+		BBAC8FD020A104A100657561 /* UIOfTableNodeCellComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOfTableNodeCellComponents.swift; sourceTree = "<group>"; };
 		ECB8EC86F433885CE1F38424 /* Pods-DySi Open.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DySi Open.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DySi Open/Pods-DySi Open.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +122,7 @@
 		BB09C976209E806C00735F83 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BBAC8FCF20A1043500657561 /* utils */,
 				BBAC8FB0209F86D900657561 /* PostTableNodeCell.swift */,
 			);
 			path = Views;
@@ -178,6 +181,14 @@
 				BBAC8FBB20A0340F00657561 /* ErrorHandler.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		BBAC8FCF20A1043500657561 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				BBAC8FD020A104A100657561 /* UIOfTableNodeCellComponents.swift */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +335,7 @@
 				BB09C975209E7F1A00735F83 /* AllPostsTableViewModel.swift in Sources */,
 				BBAC8FBC20A0340F00657561 /* ErrorHandler.swift in Sources */,
 				BB09C971209E7D4300735F83 /* DySiPost.swift in Sources */,
+				BBAC8FD120A104A100657561 /* UIOfTableNodeCellComponents.swift in Sources */,
 				BB09C96F209E7C6100735F83 /* DySiDataManager.swift in Sources */,
 				BBAC8FAC209F770300657561 /* Constants.swift in Sources */,
 				BBAC8FB8209FF5AA00657561 /* Connectivity.swift in Sources */,

@@ -14,6 +14,9 @@ protocol DySiDataManagerProtocol {
     func fetchAllPublicPosts(completion: @escaping (_ error: Error?, _ allPosts: [[String: Any]]?) -> Void) -> Void
 }
 
+/**
+ Manager that manages custom network calls made as required by the app
+ */
 class DySiDataManager: DySiDataManagerProtocol {
     func fetchAllPublicPosts(completion: @escaping (Error?, [[String : Any]]?) -> Void) {
         guard let url = URL(string: Constants.ForDySiAPI.URLS.GetAllPosts) else {

@@ -8,12 +8,23 @@
 
 import Foundation
 
+/**
+ Determines if author info is to be displayed on device screen or not.
+ 
+ - hidden: Do not show
+ - author: Show the author name for author, if exists
+ - source: Probably to show the source name for author name, if exists
+ */
 enum PostBylineType: String {
     case hidden = "Hidden"
     case author = "Author"
     case source = "Source"
 }
 
+
+/**
+ Represents a single post
+ */
 class DySiPost {
     var author: DySiPostAuthor?
     var title: String?
@@ -21,12 +32,12 @@ class DySiPost {
     var createdDateString: String?
     var dictOfImageUrls: [String: Any]?
     var cleanPermaLinkString: String?
-    
+
     init?(postDict: [String: Any]) {
         // get all required properties
         guard let title = postDict["title"] as? String, let descriptionText = postDict["description"] as? String, let createdDateString = postDict["createdDate"] as? String, let cleanPermaLinkString = postDict["cleanPermaLink"] as? String, let postBylineTypeString = postDict["postBylineType"] as? String, var authorDict = postDict["author"] as? [String: Any] else {
-            // TODO: Handle this error in a safer way
-            print ("error parsing api data")
+            // TODO Improvement: Better logging
+            print ("Warning: error parsing api data")
             return
         }
 
@@ -47,6 +58,11 @@ class DySiPost {
         self.cleanPermaLinkString = cleanPermaLinkString
     }
 
+    /**
+     Returns the same string if it can be turned into a Url, else encodes the string to make it turnable to Url
+     - Parameter urlString: The string to turn into a string that can turn into Url
+     - Returns: A string that can turn into Url
+     */
     private func getParsableUrlString(urlString: String) -> String? {
         if URL(string: urlString) != nil {
             return urlString
@@ -56,6 +72,12 @@ class DySiPost {
         return nil
     }
 
+    /**
+     Gets all the images inside the media dictionary
+     - Parameter media: A dictionary that contains array of dictionaries with
+     attributes "role" and "url"
+     - Returns: A dictionary of images with two keys "original":`String` and "nonoriginals": `[String]`
+     */
     private func getDictOfImagesFromMedia(media: [[String: Any]]) -> [String: Any]? {
         var imageUrlStringDict: [String: Any]? = [:]
         var arrayOfImageStrings: [String] = []

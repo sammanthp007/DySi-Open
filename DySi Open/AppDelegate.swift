@@ -21,11 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.rootViewController = UINavigationController(rootViewController: AllPostsViewController())
         window.makeKeyAndVisible()
         self.window = window
-        
-        /* Global UI for Navigation Controller */
-        UINavigationBar.appearance().barTintColor = UIColor(red: 0/255.0, green: 94/255.0, blue: 253/255.0, alpha: 1.0)
-        UINavigationBar.appearance().tintColor = .white
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+
+        // Global UI for Navigation Controller
+        UINavigationBar.appearance().barTintColor = Constants.ForUINavigationBar.BarTintColor
+        UINavigationBar.appearance().tintColor = Constants.ForUINavigationBar.TintColor
+        UINavigationBar.appearance().titleTextAttributes = Constants.ForUINavigationBar.TitleTextAttributes
+
         return true
     }
 
