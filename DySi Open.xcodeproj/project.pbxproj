@@ -21,7 +21,6 @@
 		BBAC8FB1209F86D900657561 /* PostTableNodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FB0209F86D900657561 /* PostTableNodeCell.swift */; };
 		BBAC8FB3209FDEB500657561 /* PostInWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FB2209FDEB500657561 /* PostInWebViewController.swift */; };
 		BBAC8FB5209FF31C00657561 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FB4209FF31C00657561 /* UIViewController.swift */; };
-		BBAC8FB8209FF5AA00657561 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FB7209FF5AA00657561 /* Connectivity.swift */; };
 		BBAC8FBC20A0340F00657561 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FBB20A0340F00657561 /* ErrorHandler.swift */; };
 		BBAC8FBE20A0393800657561 /* ASTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FBD20A0393800657561 /* ASTableNode.swift */; };
 		BBAC8FCE20A0EEC800657561 /* PostTableNodeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC8FCD20A0EEC800657561 /* PostTableNodeCellViewModel.swift */; };
@@ -58,7 +57,6 @@
 		BBAC8FB0209F86D900657561 /* PostTableNodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableNodeCell.swift; sourceTree = "<group>"; };
 		BBAC8FB2209FDEB500657561 /* PostInWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInWebViewController.swift; sourceTree = "<group>"; };
 		BBAC8FB4209FF31C00657561 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		BBAC8FB7209FF5AA00657561 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		BBAC8FBB20A0340F00657561 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		BBAC8FBD20A0393800657561 /* ASTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASTableNode.swift; sourceTree = "<group>"; };
 		BBAC8FCD20A0EEC800657561 /* PostTableNodeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableNodeCellViewModel.swift; sourceTree = "<group>"; };
@@ -202,7 +200,6 @@
 		BBAC8FB6209FF59E00657561 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				BBAC8FB7209FF5AA00657561 /* Connectivity.swift */,
 				BBAC8FBB20A0340F00657561 /* ErrorHandler.swift */,
 			);
 			path = Utils;
@@ -403,7 +400,6 @@
 				BBAC8FD120A104A100657561 /* UIOfTableNodeCellComponents.swift in Sources */,
 				BB09C96F209E7C6100735F83 /* DySiDataManager.swift in Sources */,
 				BBAC8FAC209F770300657561 /* Constants.swift in Sources */,
-				BBAC8FB8209FF5AA00657561 /* Connectivity.swift in Sources */,
 				BB467D85209D039D008E2331 /* AppDelegate.swift in Sources */,
 				BBAC8FB3209FDEB500657561 /* PostInWebViewController.swift in Sources */,
 				BB09C978209E85FF00735F83 /* DySiPostAuthor.swift in Sources */,
