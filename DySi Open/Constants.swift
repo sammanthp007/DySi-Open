@@ -21,6 +21,11 @@ struct Constants {
         static let TitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
     }
 
+    /// For PostInWebViewController
+    struct ForPostInWebViewController {
+        static let ProgressViewColor = UIColor.red
+    }
+
     /// Strings relating to making API call and using specific data from the response
     struct ForDySiAPI {
         struct URLS {

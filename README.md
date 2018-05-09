@@ -3,6 +3,11 @@
 
 Time Spent: Friday May 4 to Tuesday May 8
 
+**Majority of time taken by:**
+- Learning about MVVM framework
+- Learning about unit testing in iOS
+- Getting started with Texture
+
 ## Tasks
 - [x] Create a new empty project in Xcode.
 - [x] Setup Git for this project and link it to your personal account, make a
@@ -18,11 +23,14 @@ Time Spent: Friday May 4 to Tuesday May 8
     - [x] creation date
     - [x] post’s image (if exists in the “media” array)
 - [x] Clicking on each post should open the post’s "permalink” in a webView.
+- [x] Neat UI that should look decent and work on **different screen sizes** +
+  **landscape mode**: Thanks to [Texture](https://texturegroup.org)
  
 ## Bonus (Nice to have features):-
 - [x] Implement pull-to-refresh.
-- [x] Implement caching mechanism for the server response: With `Alamofire`
-- [x] Implement caching mechanism for images: With `PINCache`
+- [x] Implement caching mechanism for the server response: Default with
+  `Alamofire`
+- [x] Implement caching mechanism for images: Defaults with `PINCache`
 
 ## Extra features I've added
 - [x] User sees an alert when there's a networking error.
@@ -32,20 +40,23 @@ Time Spent: Friday May 4 to Tuesday May 8
 - [x] User sees empty table message when the table does not have any posts to
   show. User will not see empty table cells.
 - [x] User sees alert when no internet while loading webpage of the permalink
-- [x] User sees progress indicator at the bottom of the screen signifying a
-  loading page when the web page of the permalink is being loaded
+- [x] User sees progress indicator at either below the navigation bar or at the
+  bottom of the screen signifying a loading page when the web page of the
+  permalink is being loaded
 - [x] Not a feature (actually a discouraged action): overrode SSL requirements
   so users can view resources from links that use `HTTP` (since there were
   images that used `http`)
 
-## Unit testing done for
+These following unit tests are not comprehensive by a lot, but are here to show
+that the code is testable
+## Unit testing started for
 - [x] Utils/ErrorHandler
 - [x] Models/DySiPost
 - [x] Models/DySiPostAuthor
 - [x] ViewControllers/ViewModels/AllPostsTableViewModel
 - [x] ViewControllers/ViewModels/PostTableNodeCellViewModel
 
-## Things I would like to have but am unable to for now due to time constraint
+## Things I would have liked to have but was unable add due to time constraint
 - [ ] Testing for Managers/DySiDataManager
 - [ ] Higher test coverage
 - [ ] UI testing
@@ -54,12 +65,6 @@ Time Spent: Friday May 4 to Tuesday May 8
 
 Here’s how are we going to assess the project:-
 
-- Having a **well thought design** for your code, that is **maintainable**,
-  **testable** & **clear**.
-- **Documented methods**, variable & class names that are meaningful.
-- A good commit history.
-- A neat UI that should look decent and work on **different screen sizes** +
-  **landscape mode**.
 
 You are welcome to use as many 3rd party libraries/pods as you wish.
 
