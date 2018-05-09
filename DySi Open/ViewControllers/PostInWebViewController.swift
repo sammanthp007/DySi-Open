@@ -84,15 +84,21 @@ class PostInWebViewController: ASViewController<ASDisplayNode> {
 
     /// Adds progress bar to the bottom of the screen
     func setupProgressView() -> Void {
-        let progressView = UIProgressView(progressViewStyle: .default)
+        let progressView = UIProgressView(progressViewStyle: .bar)
         progressView.sizeToFit()
         self.progressView = progressView
+        progressView.tintColor = Constants.ForPostInWebViewController.ProgressViewColor
 
-        let bounds = self.node.frame
-        progressView.tintColor = UIColor.blue
-        let refreshRect = CGRect(x: 0, y: (bounds.size.height - progressView.frame.size.height), width: bounds.width, height: 2)
-        progressView.frame = refreshRect
-        self.node.view.addSubview(progressView)
+        if let navBar = self.navigationController?.navigationBar {
+            let refreshRect = CGRect(x: 0, y: navBar.frame.size.height, width: navBar.frame.size.width, height: 2)
+            progressView.frame = refreshRect
+            navBar.addSubview(progressView)
+        } else {
+            let bounds = self.node.frame
+            let refreshRect = CGRect(x: 0, y: (bounds.size.height - progressView.frame.size.height), width: bounds.width, height: 2)
+            progressView.frame = refreshRect
+            self.node.view.addSubview(progressView)
+        }
     }
 }
 
