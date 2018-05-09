@@ -47,24 +47,19 @@ Time Spent: Friday May 4 to Tuesday May 8
   so users can view resources from links that use `HTTP` (since there were
   images that used `http`)
 
-These following unit tests are not comprehensive by a lot, but are here to show
-that the code is testable
 ## Unit testing started for
 - [x] Utils/ErrorHandler
 - [x] Models/DySiPost
 - [x] Models/DySiPostAuthor
 - [x] ViewControllers/ViewModels/AllPostsTableViewModel
 - [x] ViewControllers/ViewModels/PostTableNodeCellViewModel
+These above mentioned unit tests are not comprehensive, but are there to show
+that the code is testable
 
 ## Things I would have liked to have but was unable add due to time constraint
 - [ ] Testing for Managers/DySiDataManager
 - [ ] Higher test coverage
 - [ ] UI testing
 
-> Feel free to surprise us with anything cool you can do to this project.
-
-Here’s how are we going to assess the project:-
-
-
-You are welcome to use as many 3rd party libraries/pods as you wish.
-
+## Final App:
+![Video Walkthrough](videowalkthrough.gif)
