@@ -33,7 +33,7 @@ class PostTableNodeCell: ASCellNode {
     /// Node for cover image of post
     let photoImageNode: ASNetworkImageNode = {
         let imageNode = ASNetworkImageNode()
-        imageNode.contentMode = .scaleAspectFit
+        imageNode.contentMode = .scaleAspectFill
         imageNode.cropRect = CGRect(x: 0, y: 0, width: 0.0, height: 0.0)
         return imageNode
     }()
@@ -43,7 +43,7 @@ class PostTableNodeCell: ASCellNode {
         self.selectionStyle = .none
         self.setUpUIOfNodes()
 
-        bottomSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 2.0, cornerColor: .black, fill: .black)
+        bottomSeparator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 4.0, cornerColor: .black, fill: .black)
 
         // get authors displayName, if exists and hinted by API to show
         if postCellViewModel.showAuthorInfoInDisplay, let authorDisplayName = postCellViewModel.displayableAuthorName {
@@ -114,7 +114,7 @@ class PostTableNodeCell: ASCellNode {
 
         // add post image to main stack
         if photoImageNode.url != nil {
-            mainVerticalStack.children?.append(ASRatioLayoutSpec(ratio: 2.0/3.0, child: photoImageNode))
+            mainVerticalStack.children?.append(ASRatioLayoutSpec(ratio: 2.0/5.0, child: photoImageNode))
         }
 
         // setup body stack: contains post texts
