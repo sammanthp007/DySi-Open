@@ -3,6 +3,11 @@
 
 Time Spent: Friday May 4 to Tuesday May 8
 
+**Majority of time taken by:**
+- Learning about MVVM framework
+- Learning about unit testing in iOS
+- Getting started with Texture
+
 ## Tasks
 - [x] Create a new empty project in Xcode.
 - [x] Setup Git for this project and link it to your personal account, make a
