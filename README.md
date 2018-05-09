@@ -1,5 +1,5 @@
 # DySi Open
-**DySi Open** uses Dynamic Signals open api to load posts.
+**DySi Open** uses Dynamic Signal's one public api to get data.
 
 Time Spent: Friday May 4 to Tuesday May 8
 
@@ -37,7 +37,7 @@ Time Spent: Friday May 4 to Tuesday May 8
 - [x] User sees a loading state while waiting for posts to load.
 - [x] User sees images being rendered progressively as it gets downloaded.
 - [x] User sees Launch Image when they open the app
-- [x] User sees empty table message when the table does not have any posts to
+- [x] User sees a view with a message when the table does not have any posts to
   show. User will not see empty table cells.
 - [x] User sees alert when no internet while loading webpage of the permalink
 - [x] User sees progress indicator at either below the navigation bar or at the
@@ -47,24 +47,22 @@ Time Spent: Friday May 4 to Tuesday May 8
   so users can view resources from links that use `HTTP` (since there were
   images that used `http`)
 
-These following unit tests are not comprehensive by a lot, but are here to show
-that the code is testable
 ## Unit testing started for
 - [x] Utils/ErrorHandler
 - [x] Models/DySiPost
 - [x] Models/DySiPostAuthor
 - [x] ViewControllers/ViewModels/AllPostsTableViewModel
 - [x] ViewControllers/ViewModels/PostTableNodeCellViewModel
+These above mentioned unit tests are not comprehensive, but are there to show
+that the code is testable
 
-## Things I would have liked to have but was unable add due to time constraint
+## Things that could be improved upon in future (when not in time constraint)
 - [ ] Testing for Managers/DySiDataManager
 - [ ] Higher test coverage
 - [ ] UI testing
 
-> Feel free to surprise us with anything cool you can do to this project.
+## Final App (with full internet access):
+![Video Walkthrough](videowalkthrough.gif)
 
-Here’s how are we going to assess the project:-
-
-
-You are welcome to use as many 3rd party libraries/pods as you wish.
-
+## Final App (without internet in beginning and end):
+![No internet video walkthrough](videowalkthrough_nonetwork.gif)
