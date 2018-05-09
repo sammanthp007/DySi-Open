@@ -31,6 +31,7 @@ Time Spent: Friday May 4 to Tuesday May 8
 - [x] User sees Launch Image when they open the app
 - [x] User sees empty table message when the table does not have any posts to
   show. User will not see empty table cells.
+- [x] User sees alert when no internet while loading webpage of the permalink
 - [x] User sees progress indicator at the bottom of the screen signifying a
   loading page when the web page of the permalink is being loaded
 - [x] Not a feature (actually a discouraged action): overrode SSL requirements

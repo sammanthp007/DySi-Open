@@ -9,6 +9,7 @@
 import UIKit
 import AsyncDisplayKit
 import WebKit
+import Alamofire
 
 class PostInWebViewController: ASViewController<ASDisplayNode> {
     var webNode: ASDisplayNode!
@@ -70,6 +71,7 @@ class PostInWebViewController: ASViewController<ASDisplayNode> {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
 
+        self.showAlertIfNotConnectedToInternetAndPopViewController()
         // load the web page
         let myRequest = URLRequest(url: currentURL)
         (self.webNode.view as! WKWebView).load(myRequest)
@@ -101,5 +103,17 @@ extension PostInWebViewController: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         progressView.isHidden = false
+    }
+}
+
+extension PostInWebViewController {
+    func showAlertIfNotConnectedToInternetAndPopViewController() {
+        if !NetworkReachabilityManager()!.isReachable {
+            let alert = UIAlertController(title: "No Internet Connection", message: "Please check your connection and try again.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                self.navigationController?.popViewController(animated: true)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
